@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ufo-sacred-geometry"
 version = "1.0.0"
-description = "Google Sacred Geometry Studio - Parametric sacred geometry, crop circle agro-glyphs, and platonic vector generation engine"
+description = "UFO Sacred Geometry Studio - Parametric sacred geometry, crop circle agro-glyphs, and platonic vector generation engine (design influenced by Material 3)"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "Google Sacred Geometry Studio Team" }
+    { name = "UFO Sacred Geometry Studio Team" }
 ]
 keywords = [
     "sacred-geometry",
@@ -69,10 +69,10 @@ sacred-geometry = "ufo_sacred_geometry.cli:main"
 ufogeom = "ufo_sacred_geometry.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/google/ufo-sacred-geometry"
-Documentation = "https://github.com/google/ufo-sacred-geometry#readme"
-Repository = "https://github.com/google/ufo-sacred-geometry.git"
-Issues = "https://github.com/google/ufo-sacred-geometry/issues"
+Homepage = "https://github.com/1nc0gn30/ufo-sacred-geometry"
+Documentation = "https://github.com/1nc0gn30/ufo-sacred-geometry#readme"
+Repository = "https://github.com/1nc0gn30/ufo-sacred-geometry.git"
+Issues = "https://github.com/1nc0gn30/ufo-sacred-geometry/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

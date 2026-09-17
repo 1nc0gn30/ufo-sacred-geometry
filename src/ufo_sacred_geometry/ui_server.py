@@ -1,7 +1,7 @@
-"""Google Sacred Geometry Studio UI & REST API Server.
+"""UFO Sacred Geometry Studio UI & REST API Server.
 
 Pure standard library HTTP & REST server (ThreadingHTTPServer) serving the
-Material 3 Web CAD Studio, live parametric vector endpoints, and CNC/DXF/OBJ
+Web CAD Studio (design influenced by Material 3), live parametric vector endpoints, and CNC/DXF/OBJ
 geometry export pipelines.
 100% Python Standard Library.
 """
@@ -566,7 +566,7 @@ def export_ast_to_obj(ast: GeometryAST) -> str:
         pass
 
     out: List[str] = [
-        f"# Google Sacred Geometry Studio OBJ Export - {ast.title}",
+        f"# UFO Sacred Geometry Studio OBJ Export - {ast.title}",
         "# Units: Millimeters (mm)",
         "o SacredGeometry",
     ]
@@ -737,7 +737,7 @@ class SacredGeometryRequestHandler(BaseHTTPRequestHandler):
     def _handle_get_stats(self) -> None:
         """Return engine operational metrics."""
         self._send_json({
-            "service": "Google Sacred Geometry Studio",
+            "service": "UFO Sacred Geometry Studio",
             "version": "1.0.0",
             "uptime_seconds": round(time.time() - SERVER_START_TIME, 2),
             "generated_geometries_count": GENERATION_COUNT,
@@ -766,14 +766,14 @@ class SacredGeometryRequestHandler(BaseHTTPRequestHandler):
         self._send_json(diag)
 
     def _serve_studio_ui(self) -> None:
-        """Serve Google Material 3 Studio web application."""
+        """Serve UFO Sacred Geometry Studio web application."""
         html_file = self._find_public_file("index.html")
         if html_file and html_file.is_file():
             self._serve_file(html_file, content_type="text/html; charset=utf-8")
             return
 
         # Fallback embedded HTML if file is missing
-        embedded_html = "<!-- Google Sacred Geometry Studio Fallback UI -->"
+        embedded_html = "<!-- UFO Sacred Geometry Studio Fallback UI -->"
         payload = embedded_html.encode("utf-8")
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -874,7 +874,7 @@ def start_ui_server(
 
     url = f"http://{host}:{port}"
     if not quiet:
-        print(f"\n✨ Google Sacred Geometry Studio running at: {url}")
+        print(f"\n✨ UFO Sacred Geometry Studio running at: {url}")
         print(f"✨ REST API Endpoints active on /api/presets, /api/generate, /api/export-svg")
         print("Press Ctrl+C to stop.\n")
 
@@ -891,7 +891,7 @@ def run_server_cli() -> None:
     """CLI Entry point to launch UI server."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="Google Sacred Geometry Studio UI Server")
+    parser = argparse.ArgumentParser(description="UFO Sacred Geometry Studio UI Server")
     parser.add_argument("--host", default="127.0.0.1", help="Binding host interface (default: 127.0.0.1)")
     parser.add_argument("--port", "-p", type=int, default=8080, help="HTTP port (default: 8080)")
     parser.add_argument("--open", "-o", action="store_true", help="Open studio UI in default browser")

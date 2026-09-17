@@ -1,20 +1,20 @@
-# Google Sacred Geometry Studio & UFO Agroglyph Architecture 🛸📐
+# UFO Sacred Geometry Studio & Agroglyph Architecture 🛸📐
 
-[![CI Multi-OS Test Matrix](https://github.com/ufo-sacred-geometry/ufo-sacred-geometry/actions/workflows/ci.yml/badge.svg)](https://github.com/ufo-sacred-geometry/ufo-sacred-geometry/actions)
+[![CI Multi-OS Test Matrix](https://github.com/1nc0gn30/ufo-sacred-geometry/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/ufo-sacred-geometry/actions)
 [![Python 3.9 - 3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20(stdlib%20only)-brightgreen.svg)](https://docs.python.org/3/library/)
 [![MCP 2024-11-05 Compliant](https://img.shields.io/badge/MCP-JSON--RPC%202.0%20Stdio-purple.svg)](https://modelcontextprotocol.io/)
 [![AutoCAD DXF & Wavefront OBJ](https://img.shields.io/badge/export-SVG%20%7C%20DXF%20%7C%20OBJ%20%7C%20JSON-orange.svg)](https://en.wikipedia.org/wiki/AutoCAD_DXF)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A pure Python 3 standard library engine and Google Material 3 CAD Studio for synthesizing sacred geometry, extraterrestrial agro-glyphs (crop circles), Platonic solids, harmonic vortex manifolds, and multi-format vector/CAD exports (**SVG**, **AutoCAD DXF R12/2000**, **Wavefront OBJ 3D Meshes**, and **JSON AST**).
+A pure Python 3 standard library engine and Web CAD Studio (design influenced by Material 3) for synthesizing sacred geometry, extraterrestrial agro-glyphs (crop circles), Platonic solids, harmonic vortex manifolds, and multi-format vector/CAD exports (**SVG**, **AutoCAD DXF R12/2000**, **Wavefront OBJ 3D Meshes**, and **JSON AST**).
 
 ---
 
 ## 🌟 Architectural Highlights
 
 - **Pure Python 3 Standard Library**: Zero third-party runtime dependencies (`math`, `json`, `dataclasses`, `http.server`, `urllib`, `pathlib`).
-- **Google Material 3 Light Mode Studio UI**: Clean Google Sans / Roboto typography, Google Blue (`#1a73e8`) accenting, interactive dual-engine viewport (SVG + 60 FPS HTML5 Canvas), dynamic layer tree inspector, and real-time AST viewer.
+- **Studio UI (Design influenced by Material 3)**: Clean typography, subtle elevation cards, interactive dual-engine viewport (SVG + 60 FPS HTML5 Canvas), dynamic layer tree inspector, and real-time AST viewer.
 - **Model Context Protocol (MCP) Server**: Full JSON-RPC 2.0 stdio server (`tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`) compatible with Claude Desktop, Cursor, Cline, and Antigravity.
 - **Multi-Format CAD / CAM Exporters**:
   - **SVG**: Vector graphics with glowing neon drop-shadow filters (`feGaussianBlur`), layer groups (`<g id="...">`), and 6 color themes.
@@ -25,7 +25,7 @@ A pure Python 3 standard library engine and Google Material 3 CAD Studio for syn
 
 ```
  ┌─────────────────────────────────────────────────────────────────────────────┐
- │  🛸 Google Sacred Geometry Studio  |  CAD / CAM Vector Engineering Matrix    │
+ │  🛸 UFO Sacred Geometry Studio    |  CAD / CAM Vector Engineering Matrix    │
  ├───────────────────┬───────────────────────────────────┬─────────────────────┤
  │ Presets Gallery   │  Interactive Viewport (SVG / 2D)  │ Parameter Controls  │
  │ ───────────────── │ ───────────────────────────────── │ ─────────────────── │
@@ -80,7 +80,7 @@ A pure Python 3 standard library engine and Google Material 3 CAD Studio for syn
 
 ```bash
 # Clone the repository
-git clone https://github.com/ufo-sacred-geometry/ufo-sacred-geometry.git
+git clone https://github.com/1nc0gn30/ufo-sacred-geometry.git
 cd ufo-sacred-geometry
 
 # Install in editable mode
@@ -92,9 +92,9 @@ python3 -m ufo_sacred_geometry.cli --help
 
 ---
 
-## 🖥️ Google Sacred Geometry Studio Web UI
+## 🖥️ UFO Sacred Geometry Studio Web UI
 
-Launch the embedded Material 3 CAD Studio locally with pure Python standard library:
+Launch the embedded CAD Studio locally (design influenced by Material 3) with pure Python standard library:
 
 ```bash
 # Launch Studio UI on default port 8080 (auto-opens browser)
@@ -108,7 +108,7 @@ ufo-sacred-geometry serve --host 0.0.0.0 --port 9000 --no-browser
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/` | Serves Google Material 3 Studio Web App |
+| `GET` | `/` | Serves Studio Web App (design influenced by Material 3) |
 | `GET` | `/api/presets` | List all 20+ presets with parameters and metadata |
 | `POST` | `/api/generate` | Generate AST and vector SVG markup |
 | `POST` | `/api/export-svg` | Download styled SVG vector file |
@@ -212,10 +212,10 @@ print(f"Milk Hill Circles: {len(milk_hill.circles)}")  # 409 circles
 | Theme Key | Visual Description | Background | Primary Stroke | Glow / Accent |
 |---|---|---|---|---|
 | `gold` / `dark_gold` | Sacred 24K Temple Gold | `#0f0f18` | `#ffd700` | `#ffaa00` |
-| `blueprint` | Google Technical Blueprint | `#0e2a47` | `#e0fbfc` | `#48cae4` |
+| `blueprint` | Technical Blueprint | `#0e2a47` | `#e0fbfc` | `#48cae4` |
 | `neon_matrix` | Matrix Phosphor Green | `#050805` | `#00ff66` | `#39ff14` |
 | `obsidian_dark` | Obsidian Cosmic Purple | `#180828` | `#e056fd` | `#bf00ff` |
-| `light_minimal` | Google Material 3 Clean Slate | `#ffffff` | `#1a1a24` | `#718093` |
+| `light_minimal` | Clean Slate (Material 3 Inspired) | `#ffffff` | `#1a1a24` | `#718093` |
 | `monochrome_laser`| High-Contrast CNC / Laser Cut | `#000000` | `#ffffff` | None |
 
 ---

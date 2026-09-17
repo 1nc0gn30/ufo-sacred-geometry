@@ -1,4 +1,4 @@
-"""Unit and integration tests for Google Sacred Geometry Studio UI Server & REST APIs."""
+"""Unit and integration tests for UFO Sacred Geometry Studio UI Server & REST APIs."""
 
 import json
 import threading
@@ -36,13 +36,13 @@ def live_server():
 
 
 def test_ui_server_get_index(live_server):
-    """Verify GET / serves the Google Material 3 Studio UI HTML."""
+    """Verify GET / serves the Studio UI HTML."""
     req = urllib.request.Request(f"{live_server}/")
     with urllib.request.urlopen(req) as resp:
         assert resp.status == 200
         assert "text/html" in resp.headers.get("Content-Type", "")
         body = resp.read().decode("utf-8")
-        assert "Google Sacred Geometry Studio" in body or "UFO Sacred Geometry" in body
+        assert "UFO Sacred Geometry Studio" in body or "UFO Sacred Geometry" in body
 
 
 def test_ui_server_get_presets(live_server):
@@ -124,7 +124,7 @@ def test_ui_server_stats_and_diagnostics(live_server):
     with urllib.request.urlopen(f"{live_server}/api/stats") as resp:
         assert resp.status == 200
         stats = json.loads(resp.read().decode("utf-8"))
-        assert stats["service"] == "Google Sacred Geometry Studio"
+        assert stats["service"] == "UFO Sacred Geometry Studio"
         assert "uptime_seconds" in stats
 
     with urllib.request.urlopen(f"{live_server}/api/diagnostics") as resp:

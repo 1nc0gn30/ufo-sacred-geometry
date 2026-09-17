@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Sacred Geometry Studio | UFO Agro-Glyph & Platonic CAD Engine</title>
+  <title>UFO Sacred Geometry Studio | Agro-Glyph & Platonic CAD Engine (Design influenced by Material 3)</title>
   
   <!-- Google Fonts: Google Sans / Roboto / Roboto Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -693,7 +693,7 @@
         <span class="material-symbols-outlined">polyline</span>
       </div>
       <div class="brand-title">
-        Google Sacred Geometry Studio
+        UFO Sacred Geometry Studio
         <span class="badge">v1.0.0 CAD</span>
       </div>
     </div>
@@ -707,7 +707,7 @@
       <div class="theme-dropdown">
         <span class="material-symbols-outlined" style="font-size: 18px;">palette</span>
         <select id="theme-selector" onchange="changeTheme(this.value)">
-          <option value="google-blueprint">Google Blueprint Blue</option>
+          <option value="google-blueprint">Technical Blueprint Blue</option>
           <option value="sacred-gold">Sacred 24K Gold</option>
           <option value="matrix-green">Neon Matrix Green</option>
           <option value="obsidian-dark">Obsidian Dark</option>
@@ -721,7 +721,7 @@
         <span>Animate</span>
       </button>
 
-      <a href="https://github.com/google/ufo-sacred-geometry" target="_blank" class="btn btn-icon" title="GitHub Repo">
+      <a href="https://github.com/1nc0gn30/ufo-sacred-geometry" target="_blank" class="btn btn-icon" title="GitHub Repo">
         <span class="material-symbols-outlined">code</span>
       </a>
     </div>
@@ -1628,7 +1628,7 @@
     }
 
     function generateOBJString() {
-      let out = "# Google Sacred Geometry Studio OBJ Export\n# UFO Agro-Glyph CAD Mesh\no SacredGeometryMesh\n";
+      let out = "# UFO Sacred Geometry Studio OBJ Export\n# UFO Agro-Glyph CAD Mesh\no SacredGeometryMesh\n";
       let vIdx = 1;
       state.ast.elements.forEach(el => {
         if (el.type === 'circle') {

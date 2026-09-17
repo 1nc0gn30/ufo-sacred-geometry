@@ -86,7 +86,7 @@ class TermColor:
 
 
 # -----------------------------------------------------------------------------
-# Embedded Google Material 3 Web Studio UI
+# Embedded Web Studio UI (design influenced by Material 3)
 # -----------------------------------------------------------------------------
 EMBEDDED_STUDIO_HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -717,7 +717,7 @@ def cmd_export(args: argparse.Namespace, tc: TermColor) -> int:
 
 
 def cmd_serve(args: argparse.Namespace, tc: TermColor) -> int:
-    """Handles 'serve' CLI command, launching Google Material 3 Web Studio."""
+    """Handles 'serve' CLI command, launching Web Studio (design influenced by Material 3)."""
     port = args.port
     host = args.host
     auto_open = args.open
@@ -1089,7 +1089,7 @@ def build_parser() -> argparse.ArgumentParser:
     # 4. serve
     serve_p = subparsers.add_parser(
         "serve",
-        help="Launch the interactive Google Material 3 Sacred Geometry Studio Web UI",
+        help="Launch the interactive Sacred Geometry Studio Web UI (design influenced by Material 3)",
         parents=[common_parser],
     )
     serve_p.add_argument("--port", "-p", type=int, default=8080, help="HTTP server port (default: 8080)")
