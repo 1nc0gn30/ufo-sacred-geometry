@@ -231,6 +231,33 @@ def generate_pattern_ast(pattern_id: str, params: Optional[Dict[str, Any]] = Non
     p = params or {}
     pattern_id = pattern_id.lower().strip().replace("-", "_")
 
+    if "cuboctahedron" in pattern_id or "small_stellated" in pattern_id or "star_polyhedron" in pattern_id:
+        try:
+            from .generators.star_polyhedra import generate_star_polyhedron_projection
+            ptype = "cuboctahedron" if "cuboctahedron" in pattern_id else "small_stellated_dodecahedron"
+            return generate_star_polyhedron_projection(
+                poly_type=str(p.get("poly_type", ptype)),
+                size=float(p.get("size", 130.0)),
+                rot_x=float(p.get("rot_x", 0.55)),
+                rot_y=float(p.get("rot_y", 0.75)),
+                perspective=bool(p.get("perspective", False)),
+            )
+        except Exception:
+            pass
+
+    if "resonance" in pattern_id or "solfeggio" in pattern_id or "schumann" in pattern_id:
+        try:
+            from .generators.star_polyhedra import generate_cymatic_resonance_pattern
+            fkey = "schumann_fundamental" if "schumann" in pattern_id else "solfeggio_528"
+            return generate_cymatic_resonance_pattern(
+                frequency_key=str(p.get("frequency_key", fkey)),
+                radius=float(p.get("radius", 160.0)),
+                harmonics_count=int(p.get("harmonics_count", 6)),
+                nodal_lines=int(p.get("nodal_lines", 12)),
+            )
+        except Exception:
+            pass
+
     # Try importing specialized generators if available
     try:
         if pattern_id in ("flower_of_life", "seed_of_life", "egg_of_life", "fruit_of_life", "tree_of_life"):

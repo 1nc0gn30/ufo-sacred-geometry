@@ -236,6 +236,50 @@ class MCPServer:
             handler=self._tool_geometry_diagnostics,
         )
 
+        # Tool 8: geometry_star_polyhedron
+        self.register_tool(
+            name="geometry_star_polyhedron",
+            description="Generate 3D Kepler-Poinsot or Archimedean star polyhedron wireframe projection (cuboctahedron, small_stellated_dodecahedron, great_stellated_dodecahedron, icosidodecahedron, truncated_icosahedron).",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "poly_type": {
+                        "type": "string",
+                        "description": "Star polyhedron type (cuboctahedron, small_stellated_dodecahedron, great_stellated_dodecahedron, icosidodecahedron, truncated_icosahedron).",
+                        "default": "cuboctahedron",
+                    },
+                    "size": {"type": "number", "default": 130.0},
+                    "rot_x": {"type": "number", "default": 0.55},
+                    "rot_y": {"type": "number", "default": 0.75},
+                    "rot_z": {"type": "number", "default": 0.0},
+                    "perspective": {"type": "boolean", "default": False},
+                    "theme": {"type": "string", "default": "gold"},
+                },
+            },
+            handler=self._tool_geometry_star_polyhedron,
+        )
+
+        # Tool 9: geometry_sacred_resonance
+        self.register_tool(
+            name="geometry_sacred_resonance",
+            description="Generate sacred harmonic resonance cymatic Chladni nodal plate geometry for Solfeggio (174-963Hz), Schumann (7.83Hz), or Planetary frequencies.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "frequency_key": {
+                        "type": "string",
+                        "description": "Frequency identifier (e.g. solfeggio_528, solfeggio_396, solfeggio_417, solfeggio_639, solfeggio_741, solfeggio_852, solfeggio_963, schumann_fundamental).",
+                        "default": "solfeggio_528",
+                    },
+                    "radius": {"type": "number", "default": 160.0},
+                    "harmonics_count": {"type": "integer", "default": 6},
+                    "nodal_lines": {"type": "integer", "default": 12},
+                    "theme": {"type": "string", "default": "gold"},
+                },
+            },
+            handler=self._tool_geometry_sacred_resonance,
+        )
+
     def _register_resources(self) -> None:
         self.resources["geometry://presets"] = {
             "uri": "geometry://presets",
@@ -552,6 +596,68 @@ class MCPServer:
         }
         return {
             "content": [{"type": "text", "text": json.dumps(diag, indent=2)}],
+            "isError": False,
+        }
+
+    def _tool_geometry_star_polyhedron(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        from .generators.star_polyhedra import generate_star_polyhedron_projection
+        poly_type = str(args.get("poly_type", "cuboctahedron"))
+        size = float(args.get("size", 130.0))
+        rot_x = float(args.get("rot_x", 0.55))
+        rot_y = float(args.get("rot_y", 0.75))
+        rot_z = float(args.get("rot_z", 0.0))
+        perspective = bool(args.get("perspective", False))
+        theme = str(args.get("theme", "gold"))
+
+        ast = generate_star_polyhedron_projection(
+            poly_type=poly_type,
+            size=size,
+            rot_x=rot_x,
+            rot_y=rot_y,
+            rot_z=rot_z,
+            perspective=perspective,
+        )
+        svg_out = export_svg(ast, theme=theme)
+        res_data = {
+            "title": ast.title,
+            "poly_type": poly_type,
+            "vertices_3d_count": len(ast.points3d),
+            "lines_count": len(ast.lines),
+            "svg_xml": svg_out,
+            "parameters": ast.parameters,
+        }
+        return {
+            "content": [{"type": "text", "text": json.dumps(res_data, indent=2)}],
+            "isError": False,
+        }
+
+    def _tool_geometry_sacred_resonance(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        from .generators.star_polyhedra import generate_cymatic_resonance_pattern, get_sacred_frequency
+        freq_key = str(args.get("frequency_key", "solfeggio_528"))
+        radius = float(args.get("radius", 160.0))
+        harmonics_count = int(args.get("harmonics_count", 6))
+        nodal_lines = int(args.get("nodal_lines", 12))
+        theme = str(args.get("theme", "gold"))
+
+        ast = generate_cymatic_resonance_pattern(
+            frequency_key=freq_key,
+            radius=radius,
+            harmonics_count=harmonics_count,
+            nodal_lines=nodal_lines,
+        )
+        freq_info = get_sacred_frequency(freq_key)
+        svg_out = export_svg(ast, theme=theme)
+        res_data = {
+            "title": ast.title,
+            "frequency_hz": freq_info.freq_hz,
+            "chakra_or_planet": freq_info.chakra_or_planet,
+            "description": freq_info.description,
+            "circles_count": len(ast.circles),
+            "lines_count": len(ast.lines),
+            "svg_xml": svg_out,
+        }
+        return {
+            "content": [{"type": "text", "text": json.dumps(res_data, indent=2)}],
             "isError": False,
         }
 

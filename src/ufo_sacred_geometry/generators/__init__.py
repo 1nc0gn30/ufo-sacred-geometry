@@ -44,6 +44,14 @@ from .metatrons_cube import (
     get_metatrons_13_centers,
 )
 from .sri_yantra import generate_sri_yantra
+from .star_polyhedra import (
+    SACRED_FREQUENCY_MATRIX,
+    SacredFrequency,
+    generate_cymatic_resonance_pattern,
+    generate_star_polyhedron_projection,
+    get_sacred_frequency,
+    list_sacred_frequencies,
+)
 
 __all__ = [
     # Flower of Life family
@@ -77,4 +85,11 @@ __all__ = [
     "generate_golden_ratio_torus",
     "generate_torus_knot",
     "generate_vesica_piscis",
+    # Archimedean, Kepler-Poinsot & Resonance
+    "generate_star_polyhedron_projection",
+    "generate_cymatic_resonance_pattern",
+    "get_sacred_frequency",
+    "list_sacred_frequencies",
+    "SacredFrequency",
+    "SACRED_FREQUENCY_MATRIX",
 ]

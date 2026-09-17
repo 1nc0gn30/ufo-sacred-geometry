@@ -68,6 +68,12 @@ from .generators import (
     generate_triskele_glyph,
     generate_vesica_piscis,
     get_metatrons_13_centers,
+    generate_star_polyhedron_projection,
+    generate_cymatic_resonance_pattern,
+    get_sacred_frequency,
+    list_sacred_frequencies,
+    SacredFrequency,
+    SACRED_FREQUENCY_MATRIX,
 )
 from .models import (
     Arc,
@@ -489,6 +495,12 @@ __all__ = [
     "generate_golden_ratio_torus",
     "generate_torus_knot",
     "generate_vesica_piscis",
+    "generate_star_polyhedron_projection",
+    "generate_cymatic_resonance_pattern",
+    "get_sacred_frequency",
+    "list_sacred_frequencies",
+    "SacredFrequency",
+    "SACRED_FREQUENCY_MATRIX",
     # Exporters
     "export_svg",
     "export_dxf",

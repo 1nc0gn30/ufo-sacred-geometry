@@ -45,6 +45,10 @@ from .generators.metatrons_cube import (
     generate_platonic_solid_projection,
 )
 from .generators.sri_yantra import generate_sri_yantra
+from .generators.star_polyhedra import (
+    generate_cymatic_resonance_pattern,
+    generate_star_polyhedron_projection,
+)
 from .models import GeometryAST, PatternPreset
 
 # Complete Preset Registry
@@ -492,6 +496,75 @@ _PRESETS_DATA: List[Dict[str, Any]] = [
         },
         "preview_hints": {"recommended_theme": "neon_ufo", "viewbox_size": 380},
     },
+    # -------------------------------------------------------------
+    # 6. ARCHIMEDEAN, KEPLER-POINSOT & SACRED RESONANCE
+    # -------------------------------------------------------------
+    {
+        "id": "cuboctahedron_vector_equilibrium",
+        "title": "Cuboctahedron (Vector Equilibrium)",
+        "category": "Archimedean & Star Polyhedra",
+        "description": "Buckminster Fuller's zero-phase Vector Equilibrium (VE) where all 24 edges equal the radial vectors.",
+        "difficulty": "advanced",
+        "tags": ["polyhedra", "cuboctahedron", "vector_equilibrium", "buckminster_fuller", "3d_projection"],
+        "default_parameters": {
+            "size": 130.0,
+            "rot_x": 0.55,
+            "rot_y": 0.75,
+            "perspective": False,
+            "stroke_width": 1.6,
+            "color": "#00f0ff",
+        },
+        "preview_hints": {"recommended_theme": "blueprint", "viewbox_size": 400},
+    },
+    {
+        "id": "small_stellated_dodecahedron",
+        "title": "Small Stellated Dodecahedron",
+        "category": "Archimedean & Star Polyhedra",
+        "description": "Kepler-Poinsot regular star polyhedron {5/2, 5} with 12 intersecting pentagrammic faces.",
+        "difficulty": "master",
+        "tags": ["polyhedra", "kepler_poinsot", "star_polyhedron", "stellated", "3d_projection"],
+        "default_parameters": {
+            "size": 140.0,
+            "rot_x": 0.45,
+            "rot_y": 0.65,
+            "perspective": False,
+            "stroke_width": 1.5,
+            "color": "#d4af37",
+        },
+        "preview_hints": {"recommended_theme": "gold", "viewbox_size": 400},
+    },
+    {
+        "id": "sacred_resonance_solfeggio_528",
+        "title": "Sacred Cymatic Resonance (528 Hz DNA Transformation)",
+        "category": "Harmonic Resonance & Cymatics",
+        "description": "Chladni nodal plate geometry vibrating at the 528 Hz Solfeggio Love and DNA repair frequency.",
+        "difficulty": "advanced",
+        "tags": ["resonance", "cymatics", "solfeggio", "528hz", "dna_repair", "chladni"],
+        "default_parameters": {
+            "frequency_key": "solfeggio_528",
+            "radius": 160.0,
+            "harmonics_count": 6,
+            "nodal_lines": 12,
+            "stroke_width": 1.2,
+        },
+        "preview_hints": {"recommended_theme": "emerald_matrix", "viewbox_size": 400},
+    },
+    {
+        "id": "schumann_resonance_earth",
+        "title": "Schumann Earth Cavity Resonance (7.83 Hz)",
+        "category": "Harmonic Resonance & Cymatics",
+        "description": "Fundamental electromagnetic ionospheric standing wave of Planet Earth synchronizing alpha brainwaves.",
+        "difficulty": "advanced",
+        "tags": ["resonance", "schumann", "earth", "7_83hz", "ionosphere", "alpha_waves"],
+        "default_parameters": {
+            "frequency_key": "schumann_fundamental",
+            "radius": 160.0,
+            "harmonics_count": 5,
+            "nodal_lines": 8,
+            "stroke_width": 1.3,
+        },
+        "preview_hints": {"recommended_theme": "neon_ufo", "viewbox_size": 400},
+    },
 ]
 
 # Instantiate PatternPreset Objects
@@ -527,6 +600,10 @@ _GENERATOR_MAP: Dict[str, Callable[..., GeometryAST]] = {
     "crop_circle_triskele": generate_triskele_glyph,
     "torus_vortex": generate_torus,
     "torus_knot_trefoil": generate_torus_knot,
+    "cuboctahedron_vector_equilibrium": lambda **kw: generate_star_polyhedron_projection(poly_type="cuboctahedron", **kw),
+    "small_stellated_dodecahedron": lambda **kw: generate_star_polyhedron_projection(poly_type="small_stellated_dodecahedron", **kw),
+    "sacred_resonance_solfeggio_528": lambda **kw: generate_cymatic_resonance_pattern(frequency_key="solfeggio_528", **kw),
+    "schumann_resonance_earth": lambda **kw: generate_cymatic_resonance_pattern(frequency_key="schumann_fundamental", **kw),
 }
 
 
