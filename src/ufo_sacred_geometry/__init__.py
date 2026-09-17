@@ -62,6 +62,7 @@ from .generators import (
     generate_seed_of_life,
     generate_sri_yantra,
     generate_torus,
+    generate_golden_ratio_torus,
     generate_torus_knot,
     generate_tree_of_life,
     generate_triskele_glyph,
@@ -322,6 +323,13 @@ def _dispatch_pattern_generation(pattern_id: str, p: Dict[str, Any]) -> Geometry
         stroke_width = float(p.get("stroke_width", 0.8))
         return generate_torus(major_radius=major_radius, minor_radius=minor_radius, u_steps=u_steps, v_steps=v_steps, stroke_width=stroke_width)
 
+    elif pattern_id in ("golden_torus", "golden_ratio_torus", "phi_torus"):
+        radius = float(p.get("radius", 120.0))
+        phi_strands = int(p.get("phi_strands", p.get("strands", 24)))
+        v_samples = int(p.get("v_samples", 40))
+        stroke_width = float(p.get("stroke_width", 1.0))
+        return generate_golden_ratio_torus(radius=radius, phi_strands=phi_strands, v_samples=v_samples, stroke_width=stroke_width)
+
     elif pattern_id in ("torus_knot", "torus_knot_trefoil"):
         p_val = int(p.get("p", 3))
         q_val = int(p.get("q", 8))
@@ -478,6 +486,7 @@ __all__ = [
     "generate_triskele_glyph",
     "generate_merkaba",
     "generate_torus",
+    "generate_golden_ratio_torus",
     "generate_torus_knot",
     "generate_vesica_piscis",
     # Exporters

@@ -24,6 +24,7 @@ from ufo_sacred_geometry.generators import (
     generate_seed_of_life,
     generate_sri_yantra,
     generate_torus,
+    generate_golden_ratio_torus,
     generate_torus_knot,
     generate_tree_of_life,
     generate_triskele_glyph,
@@ -155,6 +156,10 @@ def test_merkaba_and_torus():
 
     ast_vesica = generate_vesica_piscis(radius=100.0)
     assert len(ast_vesica.circles) >= 2
+
+    ast_phi_torus = generate_golden_ratio_torus(radius=100.0, phi_strands=12)
+    assert len(ast_phi_torus.lines) > 0
+    assert len(ast_phi_torus.points3d) > 0
 
 
 def test_top_level_generate_pattern():

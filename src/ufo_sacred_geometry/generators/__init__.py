@@ -32,6 +32,7 @@ from .flower_of_life import (
     generate_tree_of_life,
 )
 from .merkaba_torus import (
+    generate_golden_ratio_torus,
     generate_merkaba,
     generate_torus,
     generate_torus_knot,
@@ -73,6 +74,7 @@ __all__ = [
     # Merkaba & Torus
     "generate_merkaba",
     "generate_torus",
+    "generate_golden_ratio_torus",
     "generate_torus_knot",
     "generate_vesica_piscis",
 ]

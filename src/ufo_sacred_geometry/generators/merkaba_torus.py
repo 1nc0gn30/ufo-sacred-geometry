@@ -15,6 +15,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from ..models import Arc, Circle, GeometryAST, LineSegment, Point2D, Point3D, Polygon, Spline
 
+PHI = (1.0 + math.sqrt(5.0)) / 2.0  # 1.618033988749895
+
 
 def generate_merkaba(
     size: Optional[float] = None,
@@ -425,3 +427,88 @@ def generate_vesica_piscis(
     ast.add_circle(c0, radius * 1.732, stroke_width=stroke_width * 1.2, color=circle_color, layer=layer)
 
     return ast
+
+
+def generate_golden_ratio_torus(
+    radius: float = 120.0,
+    phi_strands: int = 24,
+    v_samples: int = 40,
+    rot_x: float = 0.5,
+    rot_y: float = 0.3,
+    rot_z: float = 0.0,
+    center_x: float = 0.0,
+    center_y: float = 0.0,
+    stroke_width: float = 1.0,
+    primary_color: str = "#d4af37",
+    secondary_color: str = "#00ffff",
+    layer: str = "golden_torus",
+    **kwargs: Any,
+) -> GeometryAST:
+    """Generate a Golden Ratio (phi) vortex torus vector field.
+
+    Applies the Golden Ratio (phi = 1.6180339887) to determine toroidal
+    aspect ratios R/r = PHI and continuous spiraling golden logarithmic
+    flow curves winding along the toroidal manifold.
+    """
+    major_r = radius
+    minor_r = radius / PHI
+
+    ast = GeometryAST(
+        title="Golden Ratio Torus Vortex Field",
+        description="Golden Ratio harmonic torus field with phi-proportional manifold geometry and logarithmic spiral stream-lines.",
+        parameters={
+            "radius": radius,
+            "major_radius": major_r,
+            "minor_radius": minor_r,
+            "phi_strands": phi_strands,
+            "v_samples": v_samples,
+            "rot_x": rot_x,
+            "rot_y": rot_y,
+            "rot_z": rot_z,
+            "stroke_width": stroke_width,
+        },
+        tags=["sacred_geometry", "golden_ratio", "torus", "phi", "vortex", "3d"],
+        layers={
+            layer: {"color": primary_color, "stroke_width": stroke_width},
+            "phi_streamlines": {"color": secondary_color, "stroke_width": stroke_width * 0.85, "opacity": 0.75},
+        },
+    )
+
+    pts_3d_all: List[Point3D] = []
+
+    def project_pt(p3: Point3D) -> Point2D:
+        pr = p3.rotate_euler(rot_x, rot_y, rot_z)
+        p2 = pr.project_2d(orthographic=True)
+        return p2.translate(center_x, center_y)
+
+    # Generate PHI logarithmic streamlines winding on torus
+    for strand in range(phi_strands):
+        strand_phase = strand * (2.0 * math.pi / phi_strands)
+        strand_pts: List[Point2D] = []
+
+        for step in range(v_samples + 1):
+            t = (step / float(v_samples)) * 2.0 * math.pi
+            # Meridian angle v advances by t, Toroidal angle u advances by PHI * t + strand_phase
+            u = PHI * t + strand_phase
+            v = t
+
+            x = (major_r + minor_r * math.cos(v)) * math.cos(u)
+            y = (major_r + minor_r * math.cos(v)) * math.sin(u)
+            z = minor_r * math.sin(v)
+
+            p3 = Point3D(x, y, z)
+            pts_3d_all.append(p3)
+            strand_pts.append(project_pt(p3))
+
+        for k in range(len(strand_pts) - 1):
+            ast.add_line(
+                strand_pts[k],
+                strand_pts[k + 1],
+                stroke_width=stroke_width,
+                color=secondary_color if strand % 2 == 1 else primary_color,
+                layer="phi_streamlines",
+            )
+
+    ast.points3d = pts_3d_all
+    return ast
+
