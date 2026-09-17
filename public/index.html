@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="google-blueprint">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Sacred Geometry Studio | UFO Agro-Glyph & Platonic CAD Engine</title>
+  
+  <!-- Google Fonts: Google Sans / Roboto / Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols & Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    /* Google Material 3 Design Tokens & CSS Variables */
+    :root {
+      --font-google: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Roboto Mono', monospace;
+
+      --google-blue: #1a73e8;
+      --google-blue-hover: #1765cc;
+      --google-blue-surface: #e8f0fe;
+      --google-red: #ea4335;
+      --google-yellow: #fbbc04;
+      --google-green: #34a853;
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --shadow-elevation: 0 8px 30px rgba(0, 0, 0, 0.12);
+      
+      --phi: 1.618033988749895;
+    }
+
+    /* Color Themes */
+    [data-theme="google-blueprint"] {
+      --bg-canvas: #0a1128;
+      --bg-surface: #101c42;
+      --bg-surface-variant: #1a2b5e;
+      --bg-card: rgba(16, 28, 66, 0.85);
+      --text-primary: #e8f0fe;
+      --text-secondary: #9aa0a6;
+      --border-color: #2a3e7a;
+      --stroke-default: #4285f4;
+      --stroke-accent: #38bdf8;
+      --grid-color: rgba(66, 133, 244, 0.12);
+      --badge-bg: #1a73e8;
+      --badge-text: #ffffff;
+      --viewport-bg: radial-gradient(circle at center, #101e4a 0%, #060b1c 100%);
+    }
+
+    [data-theme="sacred-gold"] {
+      --bg-canvas: #0c0a06;
+      --bg-surface: #1a160d;
+      --bg-surface-variant: #2d2617;
+      --bg-card: rgba(26, 22, 13, 0.85);
+      --text-primary: #fef08a;
+      --text-secondary: #ca8a04;
+      --border-color: #53421b;
+      --stroke-default: #ffd700;
+      --stroke-accent: #f59e0b;
+      --grid-color: rgba(255, 215, 0, 0.12);
+      --badge-bg: #eab308;
+      --badge-text: #000000;
+      --viewport-bg: radial-gradient(circle at center, #1f1a0e 0%, #050402 100%);
+    }
+
+    [data-theme="matrix-green"] {
+      --bg-canvas: #040d06;
+      --bg-surface: #0a1c0e;
+      --bg-surface-variant: #13331b;
+      --bg-card: rgba(10, 28, 14, 0.85);
+      --text-primary: #86efac;
+      --text-secondary: #22c55e;
+      --border-color: #1b5e20;
+      --stroke-default: #00ff66;
+      --stroke-accent: #10b981;
+      --grid-color: rgba(0, 255, 102, 0.12);
+      --badge-bg: #22c55e;
+      --badge-text: #000000;
+      --viewport-bg: radial-gradient(circle at center, #0d2613 0%, #020803 100%);
+    }
+
+    [data-theme="obsidian-dark"] {
+      --bg-canvas: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface-variant: #2d2d2d;
+      --bg-card: rgba(30, 30, 30, 0.85);
+      --text-primary: #f1f3f4;
+      --text-secondary: #9aa0a6;
+      --border-color: #3c4043;
+      --stroke-default: #e8eaed;
+      --stroke-accent: #8ab4f8;
+      --grid-color: rgba(255, 255, 255, 0.08);
+      --badge-bg: #8ab4f8;
+      --badge-text: #202124;
+      --viewport-bg: radial-gradient(circle at center, #242424 0%, #0d0d0d 100%);
+    }
+
+    [data-theme="minimalist-light"] {
+      --bg-canvas: #f8f9fa;
+      --bg-surface: #ffffff;
+      --bg-surface-variant: #f1f3f4;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-primary: #202124;
+      --text-secondary: #5f6368;
+      --border-color: #dadce0;
+      --stroke-default: #1a73e8;
+      --stroke-accent: #d93025;
+      --grid-color: rgba(26, 115, 232, 0.08);
+      --badge-bg: #1a73e8;
+      --badge-text: #ffffff;
+      --viewport-bg: radial-gradient(circle at center, #ffffff 0%, #eef2f8 100%);
+    }
+
+    [data-theme="crop-parchment"] {
+      --bg-canvas: #1c1813;
+      --bg-surface: #2b241c;
+      --bg-surface-variant: #3d3428;
+      --bg-card: rgba(43, 36, 28, 0.88);
+      --text-primary: #fde68a;
+      --text-secondary: #d97706;
+      --border-color: #594a37;
+      --stroke-default: #fbbf24;
+      --stroke-accent: #f59e0b;
+      --grid-color: rgba(251, 191, 36, 0.12);
+      --badge-bg: #d97706;
+      --badge-text: #ffffff;
+      --viewport-bg: radial-gradient(circle at center, #362d22 0%, #14110d 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Google Studio Top Navigation Bar */
+    header.studio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 24px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--google-blue), #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 2px 8px rgba(26, 115, 232, 0.35);
+    }
+
+    .brand-title {
+      font-family: var(--font-google);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-title span.badge {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-dropdown {
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface-variant);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 4px 12px;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .theme-dropdown select {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-family: var(--font-google);
+      font-size: 13px;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-google);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--google-blue);
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(26, 115, 232, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--google-blue-hover);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-variant);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-color);
+    }
+
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border-radius: 50%;
+      background: var(--bg-surface-variant);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-icon:hover {
+      background: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    /* Main Studio Grid Layout */
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr 320px;
+      gap: 16px;
+      padding: 16px;
+      flex: 1;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+    }
+
+    @media (max-width: 1200px) {
+      .studio-layout {
+        grid-template-columns: 300px 1fr;
+      }
+      .inspector-panel {
+        display: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .studio-layout {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+      }
+    }
+
+    /* Panel Base Styles (Google M3 Surfaces) */
+    .studio-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-header h2 {
+      font-family: var(--font-google);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Preset Filters & Grid */
+    .category-chips {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .category-chips::-webkit-scrollbar { display: none; }
+
+    .chip {
+      padding: 5px 12px;
+      font-family: var(--font-google);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-variant);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .chip.active, .chip:hover {
+      background: var(--google-blue);
+      color: #ffffff;
+      border-color: var(--google-blue);
+    }
+
+    .preset-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .preset-card {
+      background: var(--bg-surface-variant);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .preset-card:hover {
+      border-color: var(--stroke-default);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .preset-card.active {
+      border-color: var(--stroke-default);
+      background: rgba(66, 133, 244, 0.15);
+      box-shadow: 0 0 0 2px var(--stroke-default);
+    }
+
+    .preset-thumb {
+      height: 60px;
+      width: 100%;
+      border-radius: var(--radius-sm);
+      background: rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .preset-thumb svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--stroke-default);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .preset-name {
+      font-family: var(--font-google);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .preset-math {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    /* Parametric Sliders */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .control-label-row span.val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--stroke-accent);
+      background: var(--bg-surface-variant);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-variant);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--stroke-default);
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      transition: transform 0.1s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Viewport Area */
+    .viewport-panel {
+      position: relative;
+      background: var(--viewport-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.3), var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .viewport-toolbar {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 4px 8px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-md);
+      pointer-events: auto;
+    }
+
+    .viewport-canvas-container {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      cursor: grab;
+      overflow: hidden;
+    }
+
+    .viewport-canvas-container:active {
+      cursor: grabbing;
+    }
+
+    #cad-svg, #cad-canvas {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center center;
+      user-select: none;
+    }
+
+    /* Export Bar Floating at Bottom of Viewport */
+    .viewport-export-bar {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-elevation);
+      z-index: 20;
+    }
+
+    /* Inspector & Stats Panel */
+    .inspector-panel .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface-variant);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-family: var(--font-google);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--stroke-accent);
+    }
+
+    .ast-preview {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-primary);
+      height: 180px;
+      overflow: auto;
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--google-blue);
+      color: var(--text-primary);
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-elevation);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-google);
+      font-size: 14px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Status Indicator */
+    .api-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--google-green);
+      box-shadow: 0 0 6px var(--google-green);
+    }
+    .status-dot.offline {
+      background: var(--google-yellow);
+      box-shadow: 0 0 6px var(--google-yellow);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Studio Header -->
+  <header class="studio-header">
+    <div class="brand-section">
+      <div class="brand-logo">
+        <span class="material-symbols-outlined">polyline</span>
+      </div>
+      <div class="brand-title">
+        Google Sacred Geometry Studio
+        <span class="badge">v1.0.0 CAD</span>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div class="api-status">
+        <div id="status-dot" class="status-dot"></div>
+        <span id="status-text">Core Engine Ready</span>
+      </div>
+
+      <div class="theme-dropdown">
+        <span class="material-symbols-outlined" style="font-size: 18px;">palette</span>
+        <select id="theme-selector" onchange="changeTheme(this.value)">
+          <option value="google-blueprint">Google Blueprint Blue</option>
+          <option value="sacred-gold">Sacred 24K Gold</option>
+          <option value="matrix-green">Neon Matrix Green</option>
+          <option value="obsidian-dark">Obsidian Dark</option>
+          <option value="minimalist-light">Minimalist Light (M3)</option>
+          <option value="crop-parchment">Crop Circle Agro-Parchment</option>
+        </select>
+      </div>
+
+      <button class="btn btn-secondary" onclick="toggleAutoRotate()" id="btn-spin" title="Auto-Rotate">
+        <span class="material-symbols-outlined">rotate_right</span>
+        <span>Animate</span>
+      </button>
+
+      <a href="https://github.com/google/ufo-sacred-geometry" target="_blank" class="btn btn-icon" title="GitHub Repo">
+        <span class="material-symbols-outlined">code</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main CAD Studio Grid -->
+  <main class="studio-layout">
+    
+    <!-- Left Panel: Presets & Controls -->
+    <section class="studio-panel controls-panel">
+      <div class="panel-header">
+        <h2>
+          <span class="material-symbols-outlined" style="font-size: 18px;">auto_awesome</span>
+          Parametric Generator
+        </h2>
+      </div>
+
+      <div class="panel-body">
+        <!-- Preset Filter Chips -->
+        <div class="category-chips">
+          <button class="chip active" onclick="filterCategory('all', this)">All Patterns</button>
+          <button class="chip" onclick="filterCategory('sacred', this)">Sacred Classical</button>
+          <button class="chip" onclick="filterCategory('crop', this)">Crop Agro-Glyphs</button>
+          <button class="chip" onclick="filterCategory('platonic', this)">Platonic & 3D</button>
+          <button class="chip" onclick="filterCategory('fractal', this)">Fractal & Vortex</button>
+        </div>
+
+        <!-- Presets Selection Gallery -->
+        <div class="preset-list" id="preset-grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-color);">
+
+        <!-- Live Sliders -->
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Radius / Base Size ($R$)</span>
+            <span class="val" id="val-radius">200 mm</span>
+          </div>
+          <input type="range" id="param-radius" min="50" max="600" value="200" step="5" oninput="updateParam('radius', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Iterations / Layers ($N$)</span>
+            <span class="val" id="val-iterations">6</span>
+          </div>
+          <input type="range" id="param-iterations" min="1" max="48" value="6" step="1" oninput="updateParam('iterations', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Petal / Symmetry ($k$)</span>
+            <span class="val" id="val-symmetry">6</span>
+          </div>
+          <input type="range" id="param-symmetry" min="3" max="32" value="6" step="1" oninput="updateParam('symmetry', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Golden Ratio Multiplier ($\Phi$)</span>
+            <span class="val" id="val-phi">1.618</span>
+          </div>
+          <input type="range" id="param-phi" min="0.5" max="3.0" value="1.618" step="0.005" oninput="updateParam('phi', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Stroke Width</span>
+            <span class="val" id="val-stroke">1.5 px</span>
+          </div>
+          <input type="range" id="param-stroke" min="0.5" max="8.0" value="1.5" step="0.25" oninput="updateParam('stroke', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Rotation Angle ($\theta$)</span>
+            <span class="val" id="val-rotation">0&deg;</span>
+          </div>
+          <input type="range" id="param-rotation" min="0" max="360" value="0" step="1" oninput="updateParam('rotation', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Concentric Outer Rings</span>
+            <span class="val" id="val-rings">2</span>
+          </div>
+          <input type="range" id="param-rings" min="0" max="8" value="2" step="1" oninput="updateParam('rings', this.value)">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Fill Opacity</span>
+            <span class="val" id="val-fill">0%</span>
+          </div>
+          <input type="range" id="param-fill" min="0" max="100" value="0" step="5" oninput="updateParam('fill', this.value)">
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Panel: Interactive Vector CAD Viewport -->
+    <section class="viewport-panel">
+      <!-- Top Viewport Toolbar -->
+      <div class="viewport-toolbar">
+        <div class="toolbar-group">
+          <button class="btn btn-icon" onclick="zoomView(1.2)" title="Zoom In">
+            <span class="material-symbols-outlined">zoom_in</span>
+          </button>
+          <button class="btn btn-icon" onclick="zoomView(0.8)" title="Zoom Out">
+            <span class="material-symbols-outlined">zoom_out</span>
+          </button>
+          <button class="btn btn-icon" onclick="resetView()" title="Reset View (1:1)">
+            <span class="material-symbols-outlined">restart_alt</span>
+          </button>
+        </div>
+
+        <div class="toolbar-group">
+          <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 12px;" onclick="toggleGrid()" id="btn-grid">
+            <span class="material-symbols-outlined" style="font-size: 16px;">grid_4x4</span>
+            <span>Grid: Polar</span>
+          </button>
+          <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 12px;" onclick="toggleRenderMode()" id="btn-mode">
+            <span class="material-symbols-outlined" style="font-size: 16px;">vector_polygon</span>
+            <span>SVG Engine</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Viewport Canvas / SVG Container -->
+      <div class="viewport-canvas-container" id="viewport-box">
+        <svg id="cad-svg" viewBox="-500 -500 1000 1000">
+          <defs>
+            <pattern id="grid-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="var(--grid-color)" stroke-width="0.75"/>
+            </pattern>
+          </defs>
+          <rect x="-1000" y="-1000" width="2000" height="2000" fill="url(#grid-pattern)" id="grid-bg"/>
+          <g id="geometry-root">
+            <!-- Dynamic Vectors Rendered Here -->
+          </g>
+        </svg>
+        <canvas id="cad-canvas" width="1200" height="1200" style="display: none;"></canvas>
+      </div>
+
+      <!-- 1-Click Multi-Format Export Bar -->
+      <div class="viewport-export-bar">
+        <button class="btn btn-primary" onclick="exportFile('svg')">
+          <span class="material-symbols-outlined">download</span>
+          <span>SVG Vector</span>
+        </button>
+        <button class="btn btn-secondary" onclick="exportFile('dxf')">
+          <span class="material-symbols-outlined">precision_manufacturing</span>
+          <span>DXF (CNC / Laser)</span>
+        </button>
+        <button class="btn btn-secondary" onclick="exportFile('obj')">
+          <span class="material-symbols-outlined">view_in_ar</span>
+          <span>OBJ (3D Mesh)</span>
+        </button>
+        <button class="btn btn-secondary" onclick="copyAST()">
+          <span class="material-symbols-outlined">content_copy</span>
+          <span>JSON AST</span>
+        </button>
+        <button class="btn btn-icon" onclick="exportFile('png')" title="Download PNG Snapshot">
+          <span class="material-symbols-outlined">image</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Panel: Geometry Inspector & CAD Analytics -->
+    <section class="studio-panel inspector-panel">
+      <div class="panel-header">
+        <h2>
+          <span class="material-symbols-outlined" style="font-size: 18px;">analytics</span>
+          Geometry Inspector
+        </h2>
+      </div>
+
+      <div class="panel-body">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total Elements</span>
+            <span class="stat-value" id="stat-elements">19</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Vertices (V)</span>
+            <span class="stat-value" id="stat-vertices">114</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Symmetry Group</span>
+            <span class="stat-value" id="stat-symmetry">D6 (Hexagonal)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Golden Ratio ($\Phi$)</span>
+            <span class="stat-value">1.618034</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Path Length</span>
+            <span class="stat-value" id="stat-perimeter">2,387 mm</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Compute Latency</span>
+            <span class="stat-value" id="stat-latency">0.4 ms</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Mathematical Properties</span>
+          </div>
+          <div style="font-size: 12px; line-height: 1.5; color: var(--text-secondary);" id="math-description">
+            The Flower of Life represents the genesis pattern of creation. Contains 19 overlapping circles centered on hexagonal triangular lattice points with $r\sqrt{3}$ inter-nodal spacing.
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>Abstract Syntax Tree (AST)</span>
+            <span class="val">Live JSON</span>
+          </div>
+          <div class="ast-preview" id="ast-viewer">{ "type": "FlowerOfLife", "radius": 200 }</div>
+        </div>
+
+        <button class="btn btn-secondary" style="width: 100%;" onclick="runDiagnostics()">
+          <span class="material-symbols-outlined">bug_report</span>
+          <span>Engine Diagnostics</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Element -->
+  <div id="toast" class="toast">
+    <span class="material-symbols-outlined" style="color: var(--google-blue);">check_circle</span>
+    <span id="toast-message">Export downloaded successfully</span>
+  </div>
+
+  <!-- Pure JavaScript Math & Sacred Geometry Engine -->
+  <script>
+    // State & Configuration
+    const state = {
+      theme: 'google-blueprint',
+      currentPreset: 'flower_of_life',
+      currentCategory: 'all',
+      renderMode: 'svg', // 'svg' or 'canvas'
+      gridMode: 'polar', // 'polar', 'cartesian', 'none'
+      isAutoRotating: false,
+      rotationSpeed: 0.5,
+      zoom: 1.0,
+      panX: 0,
+      panY: 0,
+      isPanning: false,
+      startX: 0,
+      startY: 0,
+      params: {
+        radius: 200,
+        iterations: 6,
+        symmetry: 6,
+        phi: 1.618,
+        stroke: 1.5,
+        rotation: 0,
+        rings: 2,
+        fill: 0
+      },
+      ast: null
+    };
+
+    // 12 Classical & Crop Circle Presets
+    const PRESETS = [
+      {
+        id: 'flower_of_life',
+        name: 'Flower of Life',
+        category: 'sacred',
+        symmetryText: 'D6 (Hexagonal)',
+        math: '19 Circles + 2 Bounds',
+        desc: 'Sacred Genesis geometry containing 19 overlapping circles with hexagonal triangular lattice spacing at radius r.'
+      },
+      {
+        id: 'seed_of_life',
+        name: 'Seed of Life',
+        category: 'sacred',
+        symmetryText: 'D6 (7 Spheres)',
+        math: '7 Interlocking Circles',
+        desc: 'The fundamental 7-circle core of creation with 6 outer petals surrounding 1 central sphere.'
+      },
+      {
+        id: 'metatrons_cube',
+        name: 'Metatron\'s Cube',
+        category: 'platonic',
+        symmetryText: 'D6 (13 Spheres + 78 Lines)',
+        math: '13 Nodes + Platonic Proj',
+        desc: 'Fruit of Life foundation mapping all 5 Platonic Solids (Tetrahedron, Cube, Octahedron, Dodecahedron, Icosahedron).'
+      },
+      {
+        id: 'sri_yantra',
+        name: 'Sri Yantra Maha',
+        category: 'sacred',
+        symmetryText: 'Triangular Dyad',
+        math: '9 Triangles -> 43 Sub-tri',
+        desc: 'Ancient sacred diagram of 9 interlocking triangles centered at the Bindu, generating 43 secondary triangles and lotus petals.'
+      },
+      {
+        id: 'fibonacci_spiral',
+        name: 'Golden Spiral (Phi)',
+        category: 'fractal',
+        symmetryText: 'Logarithmic Phi',
+        math: 'r = a * phi^(2*theta/pi)',
+        desc: 'Pure logarithmic Fibonacci spiral governed by the golden ratio phi = (1 + sqrt(5))/2 ≈ 1.6180339887.'
+      },
+      {
+        id: 'sunflower_phyllotaxis',
+        name: 'Sunflower Phyllotaxis',
+        category: 'fractal',
+        symmetryText: 'Golden Angle 137.5°',
+        math: 'r = c*sqrt(n), theta = n*137.5°',
+        desc: 'Vogel model of botanical disc packing maximizing seed density with the golden angle 137.507764°.'
+      },
+      {
+        id: 'milk_hill_crop_circle',
+        name: 'Milk Hill 409 Agro-Glyph',
+        category: 'crop',
+        symmetryText: 'Triple 6-Arm Spiral',
+        math: '409 Circles Triple Array',
+        desc: 'The colossal August 2001 Wiltshire crop formation consisting of 409 circles distributed across 6 spiral arms.'
+      },
+      {
+        id: 'julia_set_crop_circle',
+        name: 'Julia Set Agro-Glyph',
+        category: 'crop',
+        symmetryText: 'Fractal Spiral',
+        math: '151 Circles Fractal Chain',
+        desc: 'Famous 1996 Stonehenge agro-glyph manifesting computer-generated Julia set fractal mathematics in wheat.'
+      },
+      {
+        id: 'merkaba',
+        name: 'Merkaba Star Tetrahedron',
+        category: 'platonic',
+        symmetryText: 'Oh (Interlocking 3D)',
+        math: '2 Inverted Tetrahedra',
+        desc: 'Counter-rotating light vehicle formed by two intersecting 3D regular tetrahedra.'
+      },
+      {
+        id: 'vesica_piscis',
+        name: 'Vesica Piscis',
+        category: 'sacred',
+        symmetryText: 'Dyad Lens',
+        math: 'r * sqrt(3) Lens Axis',
+        desc: 'The sacred intersection of two circles of equal radius whose centers lie on each other\'s circumference.'
+      },
+      {
+        id: 'tree_of_life',
+        name: 'Tree of Life (Kabbalah)',
+        category: 'sacred',
+        symmetryText: '10 Sephirot + 22 Paths',
+        math: 'Hermetic Matrix',
+        desc: '10 divine emanations interconnected by 22 harmonic pathways mapping universal consciousness.'
+      },
+      {
+        id: 'torus_vortex',
+        name: 'Torus Vector Equilibrium',
+        category: 'fractal',
+        symmetryText: 'Continuous Vortex',
+        math: 'R_major=200, r_minor=80',
+        desc: 'Dynamic toroidal energy vortex with nested nested harmonic streamlines.'
+      }
+    ];
+
+    // Initialize UI
+    function initUI() {
+      renderPresetGrid();
+      setupViewportEvents();
+      generateGeometry();
+      checkBackendStatus();
+    }
+
+    // Render Preset Cards
+    function renderPresetGrid() {
+      const grid = document.getElementById('preset-grid');
+      grid.innerHTML = '';
+
+      const filtered = state.currentCategory === 'all' 
+        ? PRESETS 
+        : PRESETS.filter(p => p.category === state.currentCategory);
+
+      filtered.forEach(preset => {
+        const card = document.createElement('div');
+        card.className = `preset-card ${state.currentPreset === preset.id ? 'active' : ''}`;
+        card.onclick = () => selectPreset(preset.id);
+
+        card.innerHTML = `
+          <div class="preset-thumb">
+            <svg viewBox="-100 -100 200 200">
+              ${getPresetIcon(preset.id)}
+            </svg>
+          </div>
+          <div class="preset-name" title="${preset.name}">${preset.name}</div>
+          <div class="preset-math">${preset.math}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function getPresetIcon(id) {
+      if (id === 'flower_of_life') {
+        return `<circle cx="0" cy="0" r="40"/><circle cx="40" cy="0" r="40"/><circle cx="-40" cy="0" r="40"/><circle cx="20" cy="34.6" r="40"/><circle cx="-20" cy="34.6" r="40"/><circle cx="20" cy="-34.6" r="40"/><circle cx="-20" cy="-34.6" r="40"/>`;
+      } else if (id === 'seed_of_life') {
+        return `<circle cx="0" cy="0" r="35"/><circle cx="35" cy="0" r="35"/><circle cx="-35" cy="0" r="35"/><circle cx="17.5" cy="30.3" r="35"/><circle cx="-17.5" cy="30.3" r="35"/><circle cx="17.5" cy="-30.3" r="35"/><circle cx="-17.5" cy="-30.3" r="35"/>`;
+      } else if (id === 'metatrons_cube') {
+        return `<circle cx="0" cy="0" r="15"/><circle cx="50" cy="0" r="15"/><circle cx="-50" cy="0" r="15"/><line x1="-50" y1="0" x2="50" y2="0"/><line x1="-25" y1="43.3" x2="25" y2="-43.3"/><line x1="-25" y1="-43.3" x2="25" y2="43.3"/><polygon points="0,-60 52,30 -52,30"/>`;
+      } else if (id === 'sri_yantra') {
+        return `<polygon points="0,-60 55,35 -55,35"/><polygon points="0,60 55,-35 -55,-35"/><polygon points="0,-40 40,25 -40,25"/><circle cx="0" cy="0" r="2" fill="var(--stroke-default)"/>`;
+      } else if (id === 'fibonacci_spiral') {
+        return `<path d="M 0 0 A 10 10 0 0 1 10 10 A 20 20 0 0 1 -10 30 A 40 40 0 0 1 -50 -10 A 70 70 0 0 1 20 -80" fill="none"/>`;
+      } else if (id === 'sunflower_phyllotaxis') {
+        return `<circle cx="0" cy="0" r="3"/><circle cx="10" cy="8" r="3"/><circle cx="-12" cy="15" r="3"/><circle cx="22" cy="-10" r="3"/><circle cx="-25" cy="-20" r="3"/><circle cx="35" cy="20" r="3"/><circle cx="-40" cy="30" r="3"/>`;
+      } else if (id === 'merkaba') {
+        return `<polygon points="0,-60 52,30 -52,30"/><polygon points="0,60 52,-30 -52,-30"/><line x1="0" y1="-60" x2="0" y2="60"/><line x1="-52" y1="-30" x2="52" y2="30"/>`;
+      } else {
+        return `<circle cx="-25" cy="0" r="45"/><circle cx="25" cy="0" r="45"/>`;
+      }
+    }
+
+    function filterCategory(cat, el) {
+      state.currentCategory = cat;
+      document.querySelectorAll('.category-chips .chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      renderPresetGrid();
+    }
+
+    function selectPreset(id) {
+      state.currentPreset = id;
+      const p = PRESETS.find(x => x.id === id);
+      if (p) {
+        document.getElementById('math-description').innerText = p.desc;
+      }
+      renderPresetGrid();
+      generateGeometry();
+    }
+
+    function updateParam(key, val) {
+      state.params[key] = parseFloat(val);
+      const valDisplay = document.getElementById(`val-${key}`);
+      if (valDisplay) {
+        if (key === 'radius') valDisplay.innerText = `${val} mm`;
+        else if (key === 'rotation') valDisplay.innerText = `${val}°`;
+        else if (key === 'stroke') valDisplay.innerText = `${val} px`;
+        else if (key === 'fill') valDisplay.innerText = `${val}%`;
+        else valDisplay.innerText = val;
+      }
+      generateGeometry();
+    }
+
+    // Geometry Generation Engine (Pure Math in JS + AST Builder)
+    function generateGeometry() {
+      const t0 = performance.now();
+      const p = state.params;
+      const preset = state.currentPreset;
+      const g = document.getElementById('geometry-root');
+      g.innerHTML = '';
+
+      const elements = [];
+      const R = p.radius;
+      const rot = (p.rotation * Math.PI) / 180;
+      const strokeColor = 'var(--stroke-default)';
+      const fillColor = p.fill > 0 ? `rgba(66, 133, 244, ${p.fill / 100})` : 'none';
+      const strokeWidth = p.stroke;
+
+      // Group transform for rotation
+      g.setAttribute('transform', `rotate(${p.rotation} 0 0)`);
+
+      let totalPerimeter = 0;
+      let vertexCount = 0;
+
+      if (preset === 'flower_of_life' || preset === 'seed_of_life') {
+        const layers = preset === 'seed_of_life' ? 1 : Math.min(Math.floor(p.iterations), 4);
+        
+        // Center circle
+        addCircle(0, 0, R);
+        
+        // Concentric hexagonal layers
+        for (let l = 1; l <= layers; l++) {
+          const count = 6 * l;
+          for (let i = 0; i < count; i++) {
+            const angle = (i * 2 * Math.PI) / count;
+            const dist = l * R;
+            const cx = dist * Math.cos(angle);
+            const cy = dist * Math.sin(angle);
+            addCircle(cx, cy, R);
+          }
+        }
+
+        // Concentric outer bounds
+        for (let r = 1; r <= p.rings; r++) {
+          addCircle(0, 0, (layers + 1) * R + (r * 15), 1.0);
+        }
+      } 
+      else if (preset === 'metatrons_cube') {
+        // 13 Fruit of Life Nodes
+        const nodes = [[0, 0]];
+        const dist = R * 0.75;
+        for (let i = 0; i < 6; i++) {
+          const a = (i * 2 * Math.PI) / 6;
+          nodes.push([dist * Math.cos(a), dist * Math.sin(a)]);
+        }
+        for (let i = 0; i < 6; i++) {
+          const a = (i * 2 * Math.PI) / 6 + (Math.PI / 6);
+          nodes.push([2 * dist * Math.cos(a), 2 * dist * Math.sin(a)]);
+        }
+
+        // 78 Connection Lines
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            addLine(nodes[i][0], nodes[i][1], nodes[j][0], nodes[j][1], 0.75);
+          }
+        }
+
+        // 13 Spheres
+        nodes.forEach(n => addCircle(n[0], n[1], dist * 0.45));
+      }
+      else if (preset === 'sri_yantra') {
+        // 9 Interlocking triangles
+        const baseH = R * 1.5;
+        const triHeights = [-0.9, -0.6, -0.3, 0.1, 0.4, 0.65, 0.85, -0.15, 0.35];
+        const triWidths = [1.6, 1.3, 1.0, 1.4, 1.1, 0.8, 0.5, 0.7, 0.9];
+        const triDirs = [1, 1, 1, 1, -1, -1, -1, -1, -1]; // Up vs Down
+
+        for (let i = 0; i < triHeights.length; i++) {
+          const yTip = triDirs[i] * (baseH * 0.5 * (1 - Math.abs(triHeights[i])));
+          const yBase = -triDirs[i] * (baseH * 0.45 * Math.abs(triHeights[i]));
+          const halfW = (R * triWidths[i]) * 0.5;
+          addPolygon([[0, yTip], [-halfW, yBase], [halfW, yBase]]);
+        }
+
+        // Bindu center point
+        addCircle(0, 0, 4, 1.5, 'var(--stroke-accent)', 'var(--stroke-accent)');
+
+        // Lotus Petals & Outer Rings
+        addCircle(0, 0, R * 1.1);
+        addCircle(0, 0, R * 1.3);
+        const petals = 16;
+        for (let i = 0; i < petals; i++) {
+          const a = (i * 2 * Math.PI) / petals;
+          const px = (R * 1.2) * Math.cos(a);
+          const py = (R * 1.2) * Math.sin(a);
+          addCircle(px, py, R * 0.15, 0.75);
+        }
+      }
+      else if (preset === 'fibonacci_spiral') {
+        const spiralPts = [];
+        const turns = Math.min(p.iterations, 12);
+        const maxTheta = turns * 2 * Math.PI;
+        const b = (Math.log(p.phi)) / (Math.PI / 2);
+        const a = 5;
+
+        for (let theta = 0; theta <= maxTheta; theta += 0.05) {
+          const r = a * Math.exp(b * theta * (R / 200));
+          spiralPts.push([r * Math.cos(theta), r * Math.sin(theta)]);
+        }
+        addPolyline(spiralPts);
+
+        // Radial axes
+        for (let i = 0; i < 4; i++) {
+          const ang = (i * Math.PI) / 2;
+          addLine(0, 0, R * 1.8 * Math.cos(ang), R * 1.8 * Math.sin(ang), 0.5);
+        }
+      }
+      else if (preset === 'sunflower_phyllotaxis') {
+        const count = Math.min(p.iterations * 15, 500);
+        const goldenAngle = 137.507764 * (Math.PI / 180);
+        const c = (R / Math.sqrt(count)) * 1.2;
+
+        for (let n = 1; n <= count; n++) {
+          const r = c * Math.sqrt(n);
+          const theta = n * goldenAngle;
+          const x = r * Math.cos(theta);
+          const y = r * Math.sin(theta);
+          const dotRadius = Math.max(1.5, Math.min(6, (r / R) * 5));
+          addCircle(x, y, dotRadius, 1.0, strokeColor, fillColor);
+        }
+      }
+      else if (preset === 'milk_hill_crop_circle') {
+        // Triple spiral formation of 409 circles
+        const arms = 6;
+        const circlesPerArm = Math.min(p.iterations * 10, 68);
+        
+        for (let a = 0; a < arms; a++) {
+          const armAngle = (a * 2 * Math.PI) / arms;
+          for (let i = 1; i <= circlesPerArm; i++) {
+            const t = i / circlesPerArm;
+            const spiralAngle = armAngle + (t * Math.PI * 1.5);
+            const dist = t * R * 1.4;
+            const dotR = (Math.sin(t * Math.PI) * 12) + 2;
+            const cx = dist * Math.cos(spiralAngle);
+            const cy = dist * Math.sin(spiralAngle);
+            addCircle(cx, cy, dotR, 1.0, strokeColor, 'rgba(66, 133, 244, 0.4)');
+          }
+        }
+        addCircle(0, 0, R * 1.5, 0.75);
+      }
+      else if (preset === 'merkaba') {
+        // Interlocking 3D Star Tetrahedra projection
+        const size = R * 1.2;
+        // Upright Tetrahedron
+        addPolygon([[0, -size], [size * 0.866, size * 0.5], [-size * 0.866, size * 0.5]], 2.0);
+        // Inverted Tetrahedron
+        addPolygon([[0, size], [size * 0.866, -size * 0.5], [-size * 0.866, -size * 0.5]], 2.0);
+        // Internal 3D Axes
+        addLine(0, -size, 0, size, 1.0);
+        addLine(-size * 0.866, size * 0.5, size * 0.866, -size * 0.5, 1.0);
+        addLine(size * 0.866, size * 0.5, -size * 0.866, -size * 0.5, 1.0);
+        addCircle(0, 0, size, 0.5);
+      }
+      else if (preset === 'vesica_piscis') {
+        const d = R * 0.866;
+        addCircle(-d / 2, 0, R);
+        addCircle(d / 2, 0, R);
+        addLine(-d / 2, 0, d / 2, 0, 1.0);
+        addLine(0, -R * 0.5, 0, R * 0.5, 1.0);
+        addCircle(0, 0, R * 1.2, 0.5);
+      }
+      else if (preset === 'torus_vortex') {
+        const rings = Math.min(p.iterations * 4, 48);
+        for (let i = 0; i < rings; i++) {
+          const a = (i * 2 * Math.PI) / rings;
+          const cx = (R * 0.6) * Math.cos(a);
+          const cy = (R * 0.6) * Math.sin(a);
+          addCircle(cx, cy, R * 0.6, 0.8);
+        }
+        addCircle(0, 0, R * 1.2, 1.2);
+        addCircle(0, 0, R * 0.3, 1.2);
+      }
+      else {
+        // Fallback Poly-radial
+        for (let i = 0; i < p.symmetry; i++) {
+          const a = (i * 2 * Math.PI) / p.symmetry;
+          addCircle(R * 0.7 * Math.cos(a), R * 0.7 * Math.sin(a), R * 0.7);
+        }
+        addCircle(0, 0, R);
+      }
+
+      // Helper functions for SVG primitives
+      function addCircle(cx, cy, r, sw = strokeWidth, sc = strokeColor, fc = fillColor) {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        el.setAttribute('cx', cx.toFixed(2));
+        el.setAttribute('cy', cy.toFixed(2));
+        el.setAttribute('r', r.toFixed(2));
+        el.setAttribute('stroke', sc);
+        el.setAttribute('stroke-width', sw);
+        el.setAttribute('fill', fc);
+        g.appendChild(el);
+        elements.push({ type: 'circle', cx, cy, r });
+        totalPerimeter += 2 * Math.PI * r;
+        vertexCount += 16;
+      }
+
+      function addLine(x1, y1, x2, y2, sw = strokeWidth, sc = strokeColor) {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        el.setAttribute('x1', x1.toFixed(2));
+        el.setAttribute('y1', y1.toFixed(2));
+        el.setAttribute('x2', x2.toFixed(2));
+        el.setAttribute('y2', y2.toFixed(2));
+        el.setAttribute('stroke', sc);
+        el.setAttribute('stroke-width', sw);
+        g.appendChild(el);
+        elements.push({ type: 'line', x1, y1, x2, y2 });
+        totalPerimeter += Math.hypot(x2 - x1, y2 - y1);
+        vertexCount += 2;
+      }
+
+      function addPolygon(pts, sw = strokeWidth, sc = strokeColor, fc = fillColor) {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        const ptStr = pts.map(p => `${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ');
+        el.setAttribute('points', ptStr);
+        el.setAttribute('stroke', sc);
+        el.setAttribute('stroke-width', sw);
+        el.setAttribute('fill', fc);
+        g.appendChild(el);
+        elements.push({ type: 'polygon', points: pts });
+        for (let i = 0; i < pts.length; i++) {
+          const next = pts[(i + 1) % pts.length];
+          totalPerimeter += Math.hypot(next[0] - pts[i][0], next[1] - pts[i][1]);
+        }
+        vertexCount += pts.length;
+      }
+
+      function addPolyline(pts, sw = strokeWidth, sc = strokeColor) {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+        const ptStr = pts.map(p => `${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ');
+        el.setAttribute('points', ptStr);
+        el.setAttribute('stroke', sc);
+        el.setAttribute('stroke-width', sw);
+        el.setAttribute('fill', 'none');
+        g.appendChild(el);
+        elements.push({ type: 'polyline', points: pts });
+        for (let i = 0; i < pts.length - 1; i++) {
+          totalPerimeter += Math.hypot(pts[i+1][0] - pts[i][0], pts[i+1][1] - pts[i][1]);
+        }
+        vertexCount += pts.length;
+      }
+
+      const t1 = performance.now();
+      const latency = (t1 - t0).toFixed(2);
+
+      // Store AST
+      state.ast = {
+        pattern: preset,
+        parameters: { ...p },
+        elementCount: elements.length,
+        vertexCount: vertexCount,
+        totalLengthMm: Math.round(totalPerimeter),
+        elements: elements
+      };
+
+      // Update Inspector Stats
+      document.getElementById('stat-elements').innerText = elements.length;
+      document.getElementById('stat-vertices').innerText = vertexCount;
+      document.getElementById('stat-perimeter').innerText = `${Math.round(totalPerimeter).toLocaleString()} mm`;
+      document.getElementById('stat-latency').innerText = `${latency} ms`;
+      document.getElementById('ast-viewer').innerText = JSON.stringify(state.ast, null, 2);
+    }
+
+    // Viewport Pan / Zoom Handling
+    function setupViewportEvents() {
+      const box = document.getElementById('viewport-box');
+      const svg = document.getElementById('cad-svg');
+
+      box.addEventListener('mousedown', e => {
+        state.isPanning = true;
+        state.startX = e.clientX - state.panX;
+        state.startY = e.clientY - state.panY;
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!state.isPanning) return;
+        state.panX = e.clientX - state.startX;
+        state.panY = e.clientY - state.startY;
+        applyViewportTransform();
+      });
+
+      window.addEventListener('mouseup', () => {
+        state.isPanning = false;
+      });
+
+      box.addEventListener('wheel', e => {
+        e.preventDefault();
+        const factor = e.deltaY > 0 ? 0.9 : 1.1;
+        zoomView(factor);
+      });
+    }
+
+    function zoomView(factor) {
+      state.zoom = Math.max(0.2, Math.min(10.0, state.zoom * factor));
+      applyViewportTransform();
+    }
+
+    function resetView() {
+      state.zoom = 1.0;
+      state.panX = 0;
+      state.panY = 0;
+      applyViewportTransform();
+    }
+
+    function applyViewportTransform() {
+      const svg = document.getElementById('cad-svg');
+      const canvas = document.getElementById('cad-canvas');
+      const transform = `translate(${state.panX}px, ${state.panY}px) scale(${state.zoom})`;
+      svg.style.transform = transform;
+      canvas.style.transform = transform;
+    }
+
+    function toggleGrid() {
+      const gridBg = document.getElementById('grid-bg');
+      const btn = document.getElementById('btn-grid');
+      if (state.gridMode === 'polar') {
+        state.gridMode = 'none';
+        gridBg.style.display = 'none';
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">grid_off</span><span>Grid: Off</span>`;
+      } else {
+        state.gridMode = 'polar';
+        gridBg.style.display = 'block';
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">grid_4x4</span><span>Grid: On</span>`;
+      }
+    }
+
+    function toggleRenderMode() {
+      const svg = document.getElementById('cad-svg');
+      const canvas = document.getElementById('cad-canvas');
+      const btn = document.getElementById('btn-mode');
+
+      if (state.renderMode === 'svg') {
+        state.renderMode = 'canvas';
+        svg.style.display = 'none';
+        canvas.style.display = 'block';
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">brush</span><span>Canvas 2D</span>`;
+      } else {
+        state.renderMode = 'svg';
+        svg.style.display = 'block';
+        canvas.style.display = 'none';
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">vector_polygon</span><span>SVG Engine</span>`;
+      }
+    }
+
+    // Auto-Rotate Animation
+    let spinInterval = null;
+    function toggleAutoRotate() {
+      state.isAutoRotating = !state.isAutoRotating;
+      const btn = document.getElementById('btn-spin');
+      if (state.isAutoRotating) {
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-secondary');
+        spinInterval = setInterval(() => {
+          state.params.rotation = (state.params.rotation + state.rotationSpeed) % 360;
+          document.getElementById('param-rotation').value = state.params.rotation;
+          document.getElementById('val-rotation').innerText = `${Math.round(state.params.rotation)}°`;
+          generateGeometry();
+        }, 30);
+      } else {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-secondary');
+        if (spinInterval) clearInterval(spinInterval);
+      }
+    }
+
+    // Theme Switcher
+    function changeTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      state.theme = themeName;
+      generateGeometry();
+    }
+
+    // Export Utilities
+    function exportFile(format) {
+      const p = state.params;
+      const filename = `${state.currentPreset}_sacred_geom.${format}`;
+
+      if (format === 'svg') {
+        const svgElement = document.getElementById('cad-svg').cloneNode(true);
+        svgElement.removeAttribute('style');
+        const serializer = new XMLSerializer();
+        let source = serializer.serializeToString(svgElement);
+        if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+          source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+        }
+        source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+        downloadBlob(source, filename, 'image/svg+xml;charset=utf-8');
+      } 
+      else if (format === 'dxf') {
+        const dxf = generateDXFString();
+        downloadBlob(dxf, filename, 'application/dxf');
+      }
+      else if (format === 'obj') {
+        const obj = generateOBJString();
+        downloadBlob(obj, filename, 'text/plain');
+      }
+      else if (format === 'png') {
+        const svgElement = document.getElementById('cad-svg');
+        const serializer = new XMLSerializer();
+        const svgString = serializer.serializeToString(svgElement);
+        const img = new Image();
+        const svgBlob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+        const URL = window.URL || window.webkitURL || window;
+        const blobURL = URL.createObjectURL(svgBlob);
+        
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          canvas.width = 2000;
+          canvas.height = 2000;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#0a1128';
+          ctx.fillRect(0, 0, 2000, 2000);
+          ctx.drawImage(img, 0, 0, 2000, 2000);
+          canvas.toBlob(blob => {
+            const a = document.createElement('a');
+            a.download = filename;
+            a.href = window.URL.createObjectURL(blob);
+            a.click();
+            showToast('PNG snapshot exported (2000x2000 px)');
+          });
+        };
+        img.src = blobURL;
+        return;
+      }
+      showToast(`${format.toUpperCase()} export downloaded`);
+    }
+
+    function generateDXFString() {
+      let out = "0\nSECTION\n2\nHEADER\n9\n$ACADVER\n1\nAC1009\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n";
+      state.ast.elements.forEach(el => {
+        if (el.type === 'circle') {
+          out += `0\nCIRCLE\n8\n0\n10\n${el.cx}\n20\n${el.cy}\n30\n0.0\n40\n${el.r}\n`;
+        } else if (el.type === 'line') {
+          out += `0\nLINE\n8\n0\n10\n${el.x1}\n20\n${el.y1}\n30\n0.0\n11\n${el.x2}\n21\n${el.y2}\n31\n0.0\n`;
+        } else if (el.type === 'polygon' || el.type === 'polyline') {
+          out += `0\nPOLYLINE\n8\n0\n66\n1\n70\n${el.type === 'polygon' ? 1 : 0}\n`;
+          el.points.forEach(p => {
+            out += `0\nVERTEX\n8\n0\n10\n${p[0]}\n20\n${p[1]}\n30\n0.0\n`;
+          });
+          out += `0\nSEQEND\n`;
+        }
+      });
+      out += "0\nENDSEC\n0\nEOF\n";
+      return out;
+    }
+
+    function generateOBJString() {
+      let out = "# Google Sacred Geometry Studio OBJ Export\n# UFO Agro-Glyph CAD Mesh\no SacredGeometryMesh\n";
+      let vIdx = 1;
+      state.ast.elements.forEach(el => {
+        if (el.type === 'circle') {
+          const segs = 32;
+          for (let i = 0; i < segs; i++) {
+            const a = (i * 2 * Math.PI) / segs;
+            const x = el.cx + el.r * Math.cos(a);
+            const y = el.cy + el.r * Math.sin(a);
+            out += `v ${x.toFixed(4)} ${y.toFixed(4)} 0.0000\n`;
+          }
+          out += `l`;
+          for (let i = 0; i < segs; i++) out += ` ${vIdx + i}`;
+          out += ` ${vIdx}\n`;
+          vIdx += segs;
+        } else if (el.type === 'line') {
+          out += `v ${el.x1.toFixed(4)} ${el.y1.toFixed(4)} 0.0000\n`;
+          out += `v ${el.x2.toFixed(4)} ${el.y2.toFixed(4)} 0.0000\n`;
+          out += `l ${vIdx} ${vIdx + 1}\n`;
+          vIdx += 2;
+        } else if (el.type === 'polygon') {
+          el.points.forEach(p => {
+            out += `v ${p[0].toFixed(4)} ${p[1].toFixed(4)} 0.0000\n`;
+          });
+          out += `f`;
+          for (let i = 0; i < el.points.length; i++) out += ` ${vIdx + i}`;
+          out += `\n`;
+          vIdx += el.points.length;
+        }
+      });
+      return out;
+    }
+
+    function downloadBlob(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+
+    function copyAST() {
+      navigator.clipboard.writeText(JSON.stringify(state.ast, null, 2)).then(() => {
+        showToast('JSON AST copied to clipboard');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    async function checkBackendStatus() {
+      try {
+        const res = await fetch('/api/stats');
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('status-dot').className = 'status-dot';
+          document.getElementById('status-text').innerText = 'Python Server Online';
+        }
+      } catch (err) {
+        document.getElementById('status-dot').className = 'status-dot offline';
+        document.getElementById('status-text').innerText = 'Standalone JS Engine';
+      }
+    }
+
+    async function runDiagnostics() {
+      try {
+        const res = await fetch('/api/diagnostics');
+        if (res.ok) {
+          const data = await res.json();
+          alert(`Server Diagnostics:\nPython: ${data.python_version}\nPlatform: ${data.platform}\nUptime: ${data.uptime_seconds}s\nEndpoints: ${data.endpoints.join(', ')}`);
+          return;
+        }
+      } catch (e) {}
+      alert(`Client Diagnostics:\nStandalone Engine: Active\nPresets: ${PRESETS.length}\nViewport: SVG Vector + Canvas 2D\nDevicePixelRatio: ${window.devicePixelRatio}`);
+    }
+
+    // Auto-start on DOM Load
+    window.addEventListener('DOMContentLoaded', initUI);
+  </script>
+</body>
+</html>

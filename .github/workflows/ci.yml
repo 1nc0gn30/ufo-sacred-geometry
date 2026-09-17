@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Test Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+          cache-dependency-path: 'pyproject.toml'
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          pip install -e .
+
+      - name: Run Test Suite with Pytest
+        run: |
+          pytest tests/ -v --cov=ufo_sacred_geometry --cov-report=term-missing
+
+      - name: Test CLI Commands and Zero-Dependency Verification
+        shell: bash
+        run: |
+          ufo-sacred-geometry --help
+          ufo-sacred-geometry presets
+          ufo-sacred-geometry generate flower_of_life --format svg --output test_flower.svg
+          ufo-sacred-geometry generate metatrons_cube --format dxf --output test_metatron.dxf
+          ufo-sacred-geometry generate merkaba --format obj --output test_merkaba.obj
+          test -s test_flower.svg
+          test -s test_metatron.dxf
+          test -s test_merkaba.obj

@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ufo-sacred-geometry"
+version = "1.0.0"
+description = "Google Sacred Geometry Studio - Parametric sacred geometry, crop circle agro-glyphs, and platonic vector generation engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Google Sacred Geometry Studio Team" }
+]
+keywords = [
+    "sacred-geometry",
+    "crop-circles",
+    "agro-glyphs",
+    "vector-graphics",
+    "svg",
+    "dxf",
+    "obj",
+    "cnc",
+    "laser-cutting",
+    "3d-printing",
+    "parametric-cad",
+    "flower-of-life",
+    "metatrons-cube",
+    "sri-yantra",
+    "fibonacci-spiral",
+    "mcp-server"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+    "Topic :: Multimedia :: Graphics :: Editors :: Vector-Based",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0"
+]
+mcp = [
+    "mcp>=1.0.0"
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black",
+    "ruff"
+]
+
+[project.scripts]
+ufo-sacred-geometry = "ufo_sacred_geometry.cli:main"
+sacred-geometry = "ufo_sacred_geometry.cli:main"
+ufogeom = "ufo_sacred_geometry.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/google/ufo-sacred-geometry"
+Documentation = "https://github.com/google/ufo-sacred-geometry#readme"
+Repository = "https://github.com/google/ufo-sacred-geometry.git"
+Issues = "https://github.com/google/ufo-sacred-geometry/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["ufo_sacred_geometry"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
