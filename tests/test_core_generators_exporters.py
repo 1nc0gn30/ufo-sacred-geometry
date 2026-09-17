@@ -198,7 +198,7 @@ class TestGenerators(unittest.TestCase):
         metatron = generate_metatrons_cube(radius=35.0)
         # 78 lines + 6 hexagon highlight lines + 3 Y-spokes = 87 lines
         self.assertGreaterEqual(len(metatron.lines), 78)
-        self.assertGreaterEqual(len(metatron.circles), 13)
+        self.assertEqual(len(metatron.circles), 14)  # 13 nodal centers + 1 outer ring Sephiroth nodes
 
         for solid in ["tetrahedron", "cube", "octahedron", "icosahedron", "dodecahedron"]:
             ast_solid = generate_platonic_solid_projection(solid_type=solid, size=100.0)
@@ -247,7 +247,7 @@ class TestGenerators(unittest.TestCase):
 
     def test_merkaba_and_torus(self) -> None:
         merkaba = generate_merkaba(radius=100.0)
-        self.assertGreaterEqual(len(merkaba.lines), 24)  # 6 + 6 tetra + 12 core octahedron (+ wireframe axes)
+        self.assertEqual(len(merkaba.lines), 27)  # 6 + 6 tetra + 12 core octahedron + 3 axes
 
         torus = generate_torus(major_radius=100.0, minor_radius=40.0, u_steps=16, v_steps=8)
         self.assertGreater(len(torus.lines), 100)
