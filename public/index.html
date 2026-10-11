@@ -12,13 +12,16 @@
   <meta property="og:description" content="Synthesize sacred geometry, harmonic vortex agro-glyphs, Platonic solids, and export DXF, OBJ, and vector SVGs directly in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ufo-sacred-geometry.netlify.app/">
-  <meta property="og:image" content="https://ufo-sacred-geometry.netlify.app/favicon.ico">
+  <meta property="og:image" content="https://ufo-sacred-geometry.netlify.app/assets/banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="UFO Sacred Geometry Studio Banner - Agro-Glyph & Platonic CAD Engine">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@1nc0gn30">
   <meta name="twitter:creator" content="@1nc0gn30">
   <meta name="twitter:title" content="UFO Sacred Geometry Studio | Agro-Glyph & Platonic CAD Engine">
   <meta name="twitter:description" content="Synthesize sacred geometry, harmonic vortex agro-glyphs, Platonic solids, and export DXF, OBJ, and vector SVGs directly in your browser.">
-  <meta name="twitter:image" content="https://ufo-sacred-geometry.netlify.app/favicon.ico">
+  <meta name="twitter:image" content="https://ufo-sacred-geometry.netlify.app/assets/banner.png">
 
   <!-- AEO & SEO Schema.org Graph -->
   <script type="application/ld+json">
@@ -85,6 +88,7 @@
   </script>
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
   <script src="https://integrate.depay.com/widgets/v13.js" defer></script>
 
   <!-- Google Fonts: Space Grotesk / Roboto / Roboto Mono -->
@@ -833,12 +837,11 @@
 <!-- Google Studio Header -->
   <header class="studio-header">
     <div class="brand-section">
-      <div class="brand-logo">
-        <span class="material-symbols-outlined">polyline</span>
-      </div>
+      <img src="/assets/icon.png" alt="UFO Sacred Geometry Studio Logo" style="width:36px; height:36px; border-radius:8px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 0 12px rgba(212,175,55,0.25); object-fit:contain;">
       <div class="brand-title">
         UFO Sacred Geometry Studio
-        <span class="badge" id="pro-badge">FREE TIER</span>
+        <span class="badge" style="font-size:10px; background:rgba(255,255,255,0.06); color:#a1a1aa; margin-left:4px;">v2.5 SOVEREIGN</span>
+        <span class="badge" id="licenseBadge" data-role="license-badge">⚡ FREE TIER</span>
       </div>
     </div>
 
@@ -1871,13 +1874,19 @@
     // =========================================================================
 
     function isProLicensed() {
-      return localStorage.getItem('zoth_ufo_licensed') === 'true' || localStorage.getItem('zoth_sacred_licensed') === 'true';
+      return localStorage.getItem('zoth_ufo_licensed') === 'true' ||
+             localStorage.getItem('zoth_sacred_licensed') === 'true' ||
+             localStorage.getItem('ufo_sacred_licensed') === 'true';
     }
 
     function checkLicense() {
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('licensed') === 'true' || urlParams.get('pro') === 'true') {
+      const isParamLicensed = urlParams.get('licensed') === 'true' || urlParams.get('pro') === 'true';
+      if (isParamLicensed) {
         unlockPro();
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
         return;
       }
       if (isProLicensed()) {
@@ -1888,6 +1897,7 @@
     function unlockPro() {
       localStorage.setItem('zoth_ufo_licensed', 'true');
       localStorage.setItem('zoth_sacred_licensed', 'true');
+      localStorage.setItem('ufo_sacred_licensed', 'true');
       applyProUnlockedUI();
     }
 
@@ -1906,7 +1916,7 @@
         target.style.userSelect = 'auto';
       }
 
-      const badge = document.getElementById('pro-badge');
+      const badge = document.getElementById('licenseBadge') || document.getElementById('pro-badge');
       if (badge) {
         badge.innerText = '⭐ PRO ACTIVE';
         badge.style.background = '#00ff88';
@@ -1920,25 +1930,30 @@
         const featEl = document.getElementById('paywall-feature-label');
         if (featEl) featEl.textContent = feature;
       }
-      const m = document.getElementById('license-modal');
+      const m = document.getElementById('licenseModal') || document.getElementById('license-modal');
       if (m) m.style.display = 'flex';
     }
 
     function closeLicenseModal() {
-      const m = document.getElementById('license-modal');
+      const m = document.getElementById('licenseModal') || document.getElementById('license-modal');
       if (m) m.style.display = 'none';
     }
 
-    function activateLicense() {
-      const val = document.getElementById('license-input').value.trim();
+    function activateLicense(providedKey) {
+      const inputEl = document.getElementById('license-input');
+      const val = (providedKey || (inputEl ? inputEl.value : '')).trim();
       if (val.length >= 3) {
+        localStorage.setItem('ufo_sacred_key', val);
         unlockPro();
         closeLicenseModal();
         showToast('🎉 Pro License Activated! Lifetime access unlocked.');
+        return true;
       } else {
         alert('Please enter a valid license key or receipt email.');
+        return false;
       }
     }
+    window.activateLicenseKey = activateLicense;
 
     function openDePayCheckout(e) {
       if (e) e.preventDefault();
@@ -2003,7 +2018,7 @@
   </script>
 
   <!-- Pro Paywall & License Key Activation Modal -->
-  <div id="license-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="licenseModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
     <div style="background:#14141c; border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:24px; width:100%; max-width:540px; display:flex; flex-direction:column; gap:16px; box-shadow:0 20px 50px rgba(0,0,0,0.8); position:relative; color:#f4f4f5;">
       <button type="button" onclick="closeLicenseModal()" style="position:absolute; top:16px; right:16px; background:transparent; border:none; font-size:22px; color:#a1a1aa; cursor:pointer;">&times;</button>
       <div style="display:inline-block; background:#D4AF37; color:#08080B; font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px; letter-spacing:0.5px; width:fit-content;">PRO FOUNDING ACCESS</div>
@@ -2039,8 +2054,8 @@
       <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:12px;">
         <label for="license-input" style="display:block; font-size:0.75rem; color:#a1a1aa; margin-bottom:6px;">Already purchased? Enter your receipt email or license key:</label>
         <div style="display:flex; gap:8px;">
-          <input type="text" id="license-input" style="background:#08080b; border:1px solid #27272a; color:#FFF; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; flex:1; outline:none;" placeholder="e.g. zoth-ufo-pro or your@email.com">
-          <button onclick="activateLicense()" style="background:#D4AF37; border:none; color:#08080b; padding:8px 16px; border-radius:6px; font-weight:800; font-size:0.8rem; cursor:pointer;">Activate</button>
+          <input type="text" id="license-input" style="background:#08080b; border:1px solid #27272a; color:#FFF; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; flex:1; outline:none;" placeholder="UFO-PRO-2026 or receipt email">
+          <button id="btnActivateKey" onclick="activateLicense()" style="background:#D4AF37; border:none; color:#08080b; padding:8px 16px; border-radius:6px; font-weight:800; font-size:0.8rem; cursor:pointer;">Activate</button>
         </div>
       </div>
     </div>

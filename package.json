@@ -1,6 +1,6 @@
 {
   "name": "ufo-sacred-geometry",
-  "version": "1.0.0",
+  "version": "2.5.0",
   "description": "Agro-Glyph & Platonic CAD Engine, High-Precision Vector Geometry, Wavefront OBJ & MCP Server",
   "main": "electron/main.cjs",
   "bin": {
@@ -13,7 +13,7 @@
     "cli": "node bin/ufo-geometry.js",
     "test": "pytest tests/"
   },
-  "author": "Zoth Core Intelligence",
+  "author": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
   "license": "MIT",
   "devDependencies": {
     "electron": "^34.5.8"
