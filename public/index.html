@@ -812,7 +812,6 @@
     .paywall-blur {
       filter: blur(5px);
       user-select: none;
-      pointer-events: none;
     }
   </style>
   
@@ -830,7 +829,7 @@
   <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
     <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" style="background:#635bff; color:#fff; padding:0.35rem 0.85rem; border-radius:4px; text-decoration:none; font-weight:700; font-family:var(--font-google); font-size:0.75rem;">Credit Card / Apple Pay ($19)</a>
     <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="openDePayCheckout(event)" target="_blank" rel="noopener" style="background:#9945ff; color:#fff; padding:0.35rem 0.85rem; border-radius:4px; text-decoration:none; font-weight:700; font-family:var(--font-google); font-size:0.75rem;">Pay with Solana ($19)</a>
-    <button onclick="openLicenseModal()" style="background:transparent; border:1px solid #d4af37; color:#d4af37; padding:0.35rem 0.75rem; border-radius:4px; font-weight:700; font-family:var(--font-google); font-size:0.75rem; cursor:pointer;">Enter Key</button>
+    <button id="btn-banner-key" onclick="openLicenseModal()" style="background:transparent; border:1px solid #d4af37; color:#d4af37; padding:0.35rem 0.75rem; border-radius:4px; font-weight:700; font-family:var(--font-google); font-size:0.75rem; cursor:pointer;">Enter Key</button>
   </div>
 </aside>
 
@@ -1106,16 +1105,16 @@
               <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" style="background: #635bff; color: #fff; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 700; font-family: var(--font-google);">Stripe ($19)</a>
               <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="openDePayCheckout(event)" target="_blank" rel="noopener" style="background: #9945ff; color: #fff; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 700; font-family: var(--font-google);">Solana ($19)</a>
             </div>
-            <button onclick="openLicenseModal()" style="margin-top: 8px; background: transparent; border: none; color: #d4af37; font-family: var(--font-mono); font-size: 10px; cursor: pointer; text-decoration: underline;">Have a key? Activate</button>
+            <button id="btn-paywall-key" onclick="openLicenseModal()" style="margin-top: 8px; background: transparent; border: none; color: #d4af37; font-family: var(--font-mono); font-size: 10px; cursor: pointer; text-decoration: underline;">Have a key? Activate</button>
           </div>
           <div id="paywall-target" class="paywall-blur" style="background: var(--bg-surface-variant); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px;">
             <div class="stat-label" style="margin-bottom: 8px;">1-Click CAD & 3D Exporters (Pro)</div>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-              <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('dxf')"><span class="material-symbols-outlined" style="font-size: 16px;">precision_manufacturing</span> AutoCAD DXF R12 / 2000</button>
-              <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('obj')"><span class="material-symbols-outlined" style="font-size: 16px;">view_in_ar</span> Wavefront OBJ 3D Mesh</button>
-              <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('svg')"><span class="material-symbols-outlined" style="font-size: 16px;">download</span> Scalable Vector SVG</button>
-              <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('png')"><span class="material-symbols-outlined" style="font-size: 16px;">image</span> High-Res PNG (2000px)</button>
-              <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="copyAST()"><span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span> Export Geometry AST JSON</button>
+              <button id="btn-export-dxf" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('dxf')"><span class="material-symbols-outlined" style="font-size: 16px;">precision_manufacturing</span> AutoCAD DXF R12 / 2000</button>
+              <button id="btn-export-obj" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('obj')"><span class="material-symbols-outlined" style="font-size: 16px;">view_in_ar</span> Wavefront OBJ 3D Mesh</button>
+              <button id="btn-export-svg" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('svg')"><span class="material-symbols-outlined" style="font-size: 16px;">download</span> Scalable Vector SVG</button>
+              <button id="btn-export-png" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('png')"><span class="material-symbols-outlined" style="font-size: 16px;">image</span> High-Res PNG (2000px)</button>
+              <button id="btn-copy-ast" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="copyAST()"><span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span> Export Geometry AST JSON</button>
             </div>
           </div>
         </div>
@@ -1949,7 +1948,7 @@
         showToast('🎉 Pro License Activated! Lifetime access unlocked.');
         return true;
       } else {
-        alert('Please enter a valid license key or receipt email.');
+        showToast('⚠️ Please enter a valid license key or receipt email.');
         return false;
       }
     }
@@ -2003,11 +2002,11 @@
         const res = await fetch('/api/diagnostics');
         if (res.ok) {
           const data = await res.json();
-          alert(`Server Diagnostics:\nPython: ${data.python_version}\nPlatform: ${data.platform}\nUptime: ${data.uptime_seconds}s\nEndpoints: ${data.endpoints.join(', ')}`);
+          showToast(`Server: Python ${data.python_version} • Uptime ${data.uptime_seconds}s`);
           return;
         }
       } catch (e) {}
-      alert(`Client Diagnostics:\nStandalone Engine: Active\nPresets: ${PRESETS.length}\nViewport: SVG Vector + Canvas 2D\nDevicePixelRatio: ${window.devicePixelRatio}`);
+      showToast(`Standalone Engine: Active • Presets: ${PRESETS.length} • DPR: ${window.devicePixelRatio}`);
     }
 
     // Auto-start on DOM Load
@@ -2018,7 +2017,7 @@
   </script>
 
   <!-- Pro Paywall & License Key Activation Modal -->
-  <div id="licenseModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="licenseModal" data-alias="paywall-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
     <div style="background:#14141c; border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:24px; width:100%; max-width:540px; display:flex; flex-direction:column; gap:16px; box-shadow:0 20px 50px rgba(0,0,0,0.8); position:relative; color:#f4f4f5;">
       <button type="button" onclick="closeLicenseModal()" style="position:absolute; top:16px; right:16px; background:transparent; border:none; font-size:22px; color:#a1a1aa; cursor:pointer;">&times;</button>
       <div style="display:inline-block; background:#D4AF37; color:#08080B; font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px; letter-spacing:0.5px; width:fit-content;">PRO FOUNDING ACCESS</div>

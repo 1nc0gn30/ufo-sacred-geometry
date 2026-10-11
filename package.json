@@ -2,6 +2,11 @@
   "name": "ufo-sacred-geometry",
   "version": "2.5.0",
   "description": "Agro-Glyph & Platonic CAD Engine, High-Precision Vector Geometry, Wavefront OBJ & MCP Server",
+  "homepage": "https://ufo-sacred-geometry.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1nc0gn30/ufo-sacred-geometry.git"
+  },
   "main": "electron/main.cjs",
   "bin": {
     "ufo-geometry": "./bin/ufo-geometry.js"
@@ -11,8 +16,21 @@
     "desktop": "electron .",
     "web": "node bin/ufo-geometry.js web",
     "cli": "node bin/ufo-geometry.js",
-    "test": "pytest tests/"
+    "test": "pytest tests/",
+    "test:ui": "python3 scripts/verify_ui.py"
   },
+  "keywords": [
+    "sacred-geometry",
+    "agro-glyphs",
+    "cad-engine",
+    "platonic-solids",
+    "crop-circles",
+    "dxf-export",
+    "obj-mesh",
+    "vector-svg",
+    "sovereign-saas",
+    "mcp-server"
+  ],
   "author": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
   "license": "MIT",
   "devDependencies": {
