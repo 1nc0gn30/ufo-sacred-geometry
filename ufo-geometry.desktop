@@ -1,0 +1,20 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=UFO Sacred Geometry Studio
+GenericName=Agro-Glyph & Platonic CAD Engine
+Comment=Parametric Sacred Geometry, Crop Circles, Platonic Solids CAD & MCP Server
+Exec=/usr/local/bin/ufo-geometry desktop
+Icon=/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/ufo-sacred-geometry/assets/icon.png
+Terminal=false
+Categories=Development;Graphics;VectorGraphics;Science;
+StartupNotify=true
+Actions=CLI;Web;
+
+[Desktop Action CLI]
+Name=Open UFO Geometry CLI
+Exec=x-terminal-emulator -e "/usr/local/bin/ufo-geometry --help"
+
+[Desktop Action Web]
+Name=Open Web UI (Port 8100)
+Exec=/usr/local/bin/ufo-geometry web

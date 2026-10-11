@@ -1,0 +1,21 @@
+{
+  "name": "ufo-sacred-geometry",
+  "version": "1.0.0",
+  "description": "Agro-Glyph & Platonic CAD Engine, High-Precision Vector Geometry, Wavefront OBJ & MCP Server",
+  "main": "electron/main.cjs",
+  "bin": {
+    "ufo-geometry": "./bin/ufo-geometry.js"
+  },
+  "scripts": {
+    "start": "electron .",
+    "desktop": "electron .",
+    "web": "node bin/ufo-geometry.js web",
+    "cli": "node bin/ufo-geometry.js",
+    "test": "pytest tests/"
+  },
+  "author": "Zoth Core Intelligence",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^34.5.8"
+  }
+}

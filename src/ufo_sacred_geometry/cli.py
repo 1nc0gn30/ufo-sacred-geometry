@@ -1092,7 +1092,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Launch the interactive Sacred Geometry Studio Web UI (design influenced by Material 3)",
         parents=[common_parser],
     )
-    serve_p.add_argument("--port", "-p", type=int, default=8080, help="HTTP server port (default: 8080)")
+    serve_p.add_argument("--port", "-p", type=int, default=8100, help="HTTP server port (default: 8100)")
     serve_p.add_argument("--host", default="127.0.0.1", help="HTTP server bind host (default: 127.0.0.1)")
     serve_p.add_argument("--open", action="store_true", help="Automatically open web browser upon launch")
     serve_p.add_argument("--public-dir", help="Optional custom static files directory to serve")

@@ -890,7 +890,7 @@ class SacredGeometryRequestHandler(BaseHTTPRequestHandler):
 
 def start_ui_server(
     host: str = "127.0.0.1",
-    port: int = 8080,
+    port: int = 8100,
     open_browser: bool = False,
     quiet: bool = False,
 ) -> ThreadingHTTPServer:
@@ -920,7 +920,7 @@ def run_server_cli() -> None:
 
     parser = argparse.ArgumentParser(description="UFO Sacred Geometry Studio UI Server")
     parser.add_argument("--host", default="127.0.0.1", help="Binding host interface (default: 127.0.0.1)")
-    parser.add_argument("--port", "-p", type=int, default=8080, help="HTTP port (default: 8080)")
+    parser.add_argument("--port", "-p", type=int, default=8100, help="HTTP port (default: 8100)")
     parser.add_argument("--open", "-o", action="store_true", help="Open studio UI in default browser")
     parser.add_argument("--quiet", "-q", action="store_true", help="Quiet mode (minimal logging)")
 

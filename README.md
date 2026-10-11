@@ -1,5 +1,7 @@
 # UFO Sacred Geometry Studio & Agroglyph Architecture 🛸📐
 
+[![Live App](https://img.shields.io/badge/Live%20App-ufo--sacred--geometry.netlify.app-00ff88?style=flat-square&logo=netlify)](https://ufo-sacred-geometry.netlify.app/)
+[![Founding Pro License](https://img.shields.io/badge/Pro%20Lifetime-$19%20USD%20(Stripe%20%2B%20Solana)-d4af37?style=flat-square)](https://buy.stripe.com/7sI7sA8hM2X8eFG8ww)
 [![CI Multi-OS Test Matrix](https://github.com/1nc0gn30/ufo-sacred-geometry/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/ufo-sacred-geometry/actions)
 [![Python 3.9 - 3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20(stdlib%20only)-brightgreen.svg)](https://docs.python.org/3/library/)
@@ -7,7 +9,7 @@
 [![AutoCAD DXF & Wavefront OBJ](https://img.shields.io/badge/export-SVG%20%7C%20DXF%20%7C%20OBJ%20%7C%20JSON-orange.svg)](https://en.wikipedia.org/wiki/AutoCAD_DXF)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A pure Python 3 standard library engine and Web CAD Studio (design influenced by Material 3) for synthesizing sacred geometry, extraterrestrial agro-glyphs (crop circles), Platonic solids, harmonic vortex manifolds, and multi-format vector/CAD exports (**SVG**, **AutoCAD DXF R12/2000**, **Wavefront OBJ 3D Meshes**, and **JSON AST**).
+A sovereign browser-based sacred geometry synthesizer, crop circle agro-glyph CAD generator, and AutoCAD DXF, Wavefront OBJ, and vector SVG exporter deployed at [https://ufo-sacred-geometry.netlify.app/](https://ufo-sacred-geometry.netlify.app/). Built with pure standard library Python 3 and a zero-dependency client-side SVG/Canvas vector engine.
 
 ---
 
@@ -80,7 +82,7 @@ A pure Python 3 standard library engine and Web CAD Studio (design influenced by
 
 ```bash
 # Clone the repository
-git clone https://github.com/1nc0gn30/ufo-sacred-geometry.git
+git clone https://github.com/NullAITech/ufo-sacred-geometry.git
 cd ufo-sacred-geometry
 
 # Install in editable mode
@@ -247,3 +249,8 @@ pytest --cov=ufo_sacred_geometry -v
 ## 📜 License
 
 Distributed under the **MIT License**. See `LICENSE` for details.
+
+---
+
+Engineered by **Neal Frazier Tech** ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)  
+*Sovereign Local-First Architecture • 100% In-Browser Vector CAD Engine • Zero Cloud Egress*
