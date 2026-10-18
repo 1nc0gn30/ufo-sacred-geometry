@@ -836,7 +836,7 @@
 <!-- Google Studio Header -->
   <header class="studio-header">
     <div class="brand-section">
-      <img src="/assets/icon.png" alt="UFO Sacred Geometry Studio Logo" style="width:36px; height:36px; border-radius:8px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 0 12px rgba(212,175,55,0.25); object-fit:contain;">
+      <img src="assets/icon.png" alt="UFO Sacred Geometry Studio Logo" style="width:36px; height:36px; border-radius:8px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 0 12px rgba(212,175,55,0.25); object-fit:contain;">
       <div class="brand-title">
         UFO Sacred Geometry Studio
         <span class="badge" style="font-size:10px; background:rgba(255,255,255,0.06); color:#a1a1aa; margin-left:4px;">v2.5 SOVEREIGN</span>
@@ -863,7 +863,7 @@
       </div>
 
       <button class="btn btn-secondary" onclick="openLicenseModal()" style="border:1px solid rgba(212,175,55,0.4); color:#d4af37; padding:4px 10px; font-size:12px;">
-        <span>🔑 Unlock Pro</span>
+        <span>✦ Unlock Pro</span>
       </button>
 
       <button class="btn btn-secondary" onclick="toggleAutoRotate()" id="btn-spin" title="Auto-Rotate">
@@ -1098,7 +1098,7 @@
         <!-- 1-Click CAD & 3D Exporters Pro Paywall Card -->
         <div style="margin-top: 16px; position: relative;">
           <div id="paywall-lock-overlay" style="position: absolute; inset: 0; background: rgba(8, 8, 11, 0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: var(--radius-md); z-index: 25; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);">
-            <div style="font-size: 24px; margin-bottom: 6px;">🔒</div>
+            <div style="font-size: 24px; margin-bottom: 6px;">★</div>
             <div style="font-family: var(--font-google); font-weight: 700; color: #f4f4f5; font-size: 13px; margin-bottom: 4px;">PRO EXPORT BUNDLE LOCKED</div>
             <div style="font-family: var(--font-mono); font-size: 11px; color: #a1a1aa; margin-bottom: 12px; max-width: 220px; line-height: 1.4;">Unlock DXF R12, OBJ 3D Meshes, Scalable SVGs & High-Res PNG Vectors.</div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
@@ -1945,7 +1945,7 @@
         localStorage.setItem('ufo_sacred_key', val);
         unlockPro();
         closeLicenseModal();
-        showToast('🎉 Pro License Activated! Lifetime access unlocked.');
+        showToast('★ Pro License Activated! Lifetime access unlocked.');
         return true;
       } else {
         showToast('⚠️ Please enter a valid license key or receipt email.');
@@ -1967,7 +1967,7 @@
           succeeded: () => {
             unlockPro();
             closeLicenseModal();
-            showToast('🎉 Solana Payment Verified! Pro Lifetime Unlocked.');
+            showToast('★ Solana Payment Verified! Pro Lifetime Unlocked.');
           }
         });
       } else {
@@ -2042,7 +2042,7 @@
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
           <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener noreferrer" style="background:#635BFF; color:#FFF; text-decoration:none; padding:8px 14px; border-radius:6px; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;">
-            <span>💳 Stripe / Card</span>
+            <span>★ Stripe / Card</span>
           </a>
           <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" target="_blank" rel="noopener noreferrer" onclick="openDePayCheckout(event)" style="background:linear-gradient(90deg, #9945FF 0%, #14F195 100%); color:#000; text-decoration:none; padding:8px 14px; border-radius:6px; font-weight:800; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;">
             <span>⚡ Solana DePay</span>
