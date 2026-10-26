@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="assets/hero-banner.svg" alt="UFO Sacred Geometry Studio — Sovereign Architecture Banner" width="100%" />
+</div>
+
+<br />
+
 # UFO Sacred Geometry Studio & Agroglyph Architecture 🛸📐
 
 [![Live App](https://img.shields.io/badge/Live%20App-ufo--sacred--geometry.netlify.app-00ff88?style=flat-square&logo=netlify)](https://ufo-sacred-geometry.netlify.app/)
