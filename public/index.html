@@ -37,7 +37,7 @@
         "description": "Sovereign browser-based sacred geometry synthesizer, crop circle agro-glyph CAD generator, and AutoCAD DXF, Wavefront OBJ, and vector SVG exporter.",
         "offers": {
           "@type": "Offer",
-          "price": "19.00",
+          "price": "0",
           "priceCurrency": "USD",
           "priceValidUntil": "2027-12-31",
           "availability": "https://schema.org/InStock",
@@ -75,10 +75,10 @@
           },
           {
             "@type": "Question",
-            "name": "What payment rails are accepted for the Pro license?",
+            "name": "How can I support UFO Sacred Geometry Studio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We accept major credit cards, Apple Pay, and Google Pay via Stripe ($19 founding lifetime) and cryptocurrency via Solana DePay."
+              "text": "UFO Sacred Geometry Studio is 100% free and open-access by default with zero paywalls. You can support the project via Buy Us a Coffee (Stripe) or tip via Solana (GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK)."
             }
           }
         ]
@@ -89,8 +89,6 @@
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/icon.png">
-  <script src="https://integrate.depay.com/widgets/v13.js" defer></script>
-
   <!-- Google Fonts: Space Grotesk / Roboto / Roboto Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -810,28 +808,52 @@
     }
     /* Sovereign Pro Paywall Invariants */
     .paywall-blur {
-      filter: blur(5px);
+      filter: none;
       user-select: none;
     }
   </style>
   
   <link rel="stylesheet" href="zoth-theme.css">
+
+  <!-- Zoth 100% Open-Access & Buy Us a Coffee Invariant -->
+  <script id="zoth-open-access-init">
+    (function() {
+      try {
+        var keys = ['agent_audiocipher_pro', 'agent_cyber_turtle_pro', 'agent_datamosh_pro', 'agent_nexus3d_pro', 'agent_policy_pro', 'audiocipher_license', 'audiocipher_pro_licensed', 'badge3d_pro_licensed', 'certpath_pro_key', 'certpath_pro_licensed', 'cron_rhythm_pro_key', 'cron_rhythm_pro_licensed', 'cwv-speed-engine_pro_licensed', 'cwv_pro_licensed', 'cyber_turtle_pro_licensed', 'datamosh_pro_licensed', 'deepsearch-research-agent_pro_licensed', 'deepsearch_pro_licensed', 'entropy_studio_licensed', 'envguard-secrets-vault_pro_licensed', 'envguard_pro_license', 'etsy_connector_pro', 'jwt_guard_licensed', 'mdg_pro_licensed', 'neuro_pro_licensed', 'nexus3d_pro_licensed', 'omnipost_pro_key', 'omnipost_pro_licensed', 'osint_pro_licensed', 'payload-entropy-studio_pro_licensed', 'polyglot_pro_licensed', 'pro_licensed', 'promptmaster_pro_licensed', 'promptmaster_pro_active', 'robots-txt-auditor_pro_licensed', 'robots_pro_licensed', 'schema_illustrator_pro_licensed', 'sovereign_pro_licensed', 'subsweep-lead-scanner_pro_licensed', 'subsweep_licensed', 'turtle_pro_licensed', 'ufo_sacred_licensed', 'vector-search-engine_pro_licensed', 'vector_studio_pro_licensed', 'web-security-guard_pro_licensed', 'web_security_guard_licensed', 'yourdigitalspace_pro', 'zela_guide_pro_licensed', 'zoth_ascii_magic_pro', 'zoth_audiocipher_licensed', 'zoth_badge3d_licensed', 'zoth_cyber_turtle_licensed', 'zoth_datamosh_licensed', 'zoth_etsy_licensed', 'zoth_nexus3d_licensed', 'zoth_osint_licensed', 'zoth_policy_licensed', 'zoth_sacred_licensed', 'zoth_ufo_licensed'];
+        for (var i = 0; i < keys.length; i++) {
+          localStorage.setItem(keys[i], 'true');
+        }
+        localStorage.setItem('pm_license_v2', JSON.stringify({ method: 'open_access', ref: 'free_forever', at: '2026-01-01T00:00:00Z' }));
+        window.isPro = true;
+        window.isProLicensed = true;
+      } catch (e) {}
+    })();
+  </script>
+  <style id="zoth-open-access-override">
+    .paywall-overlay, .output-paywall-overlay, #outputPaywallOverlay, #schemaPaywallOverlay,
+    #transformerPaywallOverlay, #proPaywallModal, #licenseModal, #salesBanner, #founding-offer-banner,
+    #funnelHeroBanner, [data-alias="paywallOverlay"], [data-alias="founding-offer-banner"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .paywall-wrap #outputPreview, .paywall-wrap #reportContentArea, .paywall-content,
+    .paywall-content.locked, .paywall-wrap.is-locked #outputPreview, .paywall-wrap.locked #outputPreview {
+      filter: none !important;
+      -webkit-filter: none !important;
+      user-select: auto !important;
+      pointer-events: auto !important;
+    }
+  </style>
+
 </head>
 <body>
-<aside class="sales-funnel-banner" id="salesBanner" style="background: linear-gradient(90deg, rgba(212,175,55,0.15) 0%, rgba(0,255,136,0.15) 50%, rgba(153,69,255,0.15) 100%); border-bottom: 1px solid rgba(212,175,55,0.3); backdrop-filter: blur(12px); padding: 0.65rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; position: sticky; top: 0; z-index: 100; font-family: var(--font-mono); font-size: 0.78rem;">
-  <div style="display:flex; align-items:center; gap:0.5rem; color:#f4f4f5;">
-    <span style="background:rgba(255,23,68,0.2); border:1px solid #ff1744; color:#ff1744; padding:0.15rem 0.45rem; border-radius:4px; font-weight:700; font-size:0.7rem;">FOUNDING COHORT</span>
-    <span><strong>UFO SACRED GEOMETRY PRO</strong> // Lifetime License:</span>
-    <span style="text-decoration:line-through; color:#71717a;">$79.00</span>
-    <span style="color:#d4af37; font-weight:800; font-size:0.95rem;">$19.00 USD</span>
-    <span style="color:#a1a1aa;">· Instant Key Activation</span>
-  </div>
-  <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-    <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener" style="background:#635bff; color:#fff; padding:0.35rem 0.85rem; border-radius:4px; text-decoration:none; font-weight:700; font-family:var(--font-google); font-size:0.75rem;">Credit Card / Apple Pay ($19)</a>
-    <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="openDePayCheckout(event)" target="_blank" rel="noopener" style="background:#9945ff; color:#fff; padding:0.35rem 0.85rem; border-radius:4px; text-decoration:none; font-weight:700; font-family:var(--font-google); font-size:0.75rem;">Pay with Solana ($19)</a>
-    <button id="btn-banner-key" onclick="openLicenseModal()" style="background:transparent; border:1px solid #d4af37; color:#d4af37; padding:0.35rem 0.75rem; border-radius:4px; font-weight:700; font-family:var(--font-google); font-size:0.75rem; cursor:pointer;">Enter Key</button>
-  </div>
-</aside>
+
+<div id="zoth-coffee-support-bar" style="background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(212,175,55,0.14)); border-bottom: 1px solid rgba(212,175,55,0.35); padding: 8px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; z-index: 9999;">
+  <span style="color: #10B981; font-weight: 800;">✦ 100% FREE &amp; OPEN ACCESS · ZERO PAYWALLS</span>
+  <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="background: #D4AF37; color: #08080B; padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">☕ Buy Us a Coffee (Stripe)</a>
+  <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="if(navigator.clipboard){navigator.clipboard.writeText('GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK');this.textContent='✓ Copied GG2eQb...dXoK!';}" style="background: rgba(20,241,149,0.15); color: #14F195; border: 1px solid rgba(20,241,149,0.45); padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">◎ Solana Tip (GG2e...dXoK)</a>
+</div>
 
 <!-- Google Studio Header -->
   <header class="studio-header">
@@ -840,7 +862,7 @@
       <div class="brand-title">
         UFO Sacred Geometry Studio
         <span class="badge" style="font-size:10px; background:rgba(255,255,255,0.06); color:#a1a1aa; margin-left:4px;">v2.5 SOVEREIGN</span>
-        <span class="badge" id="licenseBadge" data-role="license-badge">⚡ FREE TIER</span>
+        <span class="badge" id="licenseBadge" data-role="license-badge" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#10B981;">✦ 100% FREE & UNLOCKED</span>
       </div>
     </div>
 
@@ -863,7 +885,7 @@
       </div>
 
       <button class="btn btn-secondary" onclick="openLicenseModal()" style="border:1px solid rgba(212,175,55,0.4); color:#d4af37; padding:4px 10px; font-size:12px;">
-        <span>✦ Unlock Pro</span>
+        <span>✦ 100% Free & Open Access</span>
       </button>
 
       <button class="btn btn-secondary" onclick="toggleAutoRotate()" id="btn-spin" title="Auto-Rotate">
@@ -1095,20 +1117,10 @@
           <div class="ast-preview" id="ast-viewer">{ "type": "FlowerOfLife", "radius": 200 }</div>
         </div>
 
-        <!-- 1-Click CAD & 3D Exporters Pro Paywall Card -->
+        <!-- 1-Click CAD & 3D Exporters Panel -->
         <div style="margin-top: 16px; position: relative;">
-          <div id="paywall-lock-overlay" style="position: absolute; inset: 0; background: rgba(8, 8, 11, 0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: var(--radius-md); z-index: 25; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);">
-            <div style="font-size: 24px; margin-bottom: 6px;">★</div>
-            <div style="font-family: var(--font-google); font-weight: 700; color: #f4f4f5; font-size: 13px; margin-bottom: 4px;">PRO EXPORT BUNDLE LOCKED</div>
-            <div style="font-family: var(--font-mono); font-size: 11px; color: #a1a1aa; margin-bottom: 12px; max-width: 220px; line-height: 1.4;">Unlock DXF R12, OBJ 3D Meshes, Scalable SVGs & High-Res PNG Vectors.</div>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-              <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener" style="background: #635bff; color: #fff; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 700; font-family: var(--font-google);">Stripe ($19)</a>
-              <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="openDePayCheckout(event)" target="_blank" rel="noopener" style="background: #9945ff; color: #fff; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 700; font-family: var(--font-google);">Solana ($19)</a>
-            </div>
-            <button id="btn-paywall-key" onclick="openLicenseModal()" style="margin-top: 8px; background: transparent; border: none; color: #d4af37; font-family: var(--font-mono); font-size: 10px; cursor: pointer; text-decoration: underline;">Have a key? Activate</button>
-          </div>
-          <div id="paywall-target" class="paywall-blur" style="background: var(--bg-surface-variant); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px;">
-            <div class="stat-label" style="margin-bottom: 8px;">1-Click CAD & 3D Exporters (Pro)</div>
+          <div id="paywall-target" style="background: var(--bg-surface-variant); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px;">
+            <div class="stat-label" style="margin-bottom: 8px;">1-Click CAD & 3D Exporters (100% Unlocked)</div>
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <button id="btn-export-dxf" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('dxf')"><span class="material-symbols-outlined" style="font-size: 16px;">precision_manufacturing</span> AutoCAD DXF R12 / 2000</button>
               <button id="btn-export-obj" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; font-size: 12px;" onclick="exportFile('obj')"><span class="material-symbols-outlined" style="font-size: 16px;">view_in_ar</span> Wavefront OBJ 3D Mesh</button>
@@ -1729,10 +1741,6 @@
 
     // Export Utilities
     function exportFile(format) {
-      if (!isProLicensed()) {
-        openLicenseModal(`${format.toUpperCase()} Export`);
-        return;
-      }
       const p = state.params;
       const filename = `${state.currentPreset}_sacred_geom.${format}`;
 
@@ -1852,10 +1860,6 @@
     }
 
     function copyAST() {
-      if (!isProLicensed()) {
-        openLicenseModal('JSON AST Export');
-        return;
-      }
       navigator.clipboard.writeText(JSON.stringify(state.ast, null, 2)).then(() => {
         showToast('JSON AST copied to clipboard');
       });
@@ -1869,34 +1873,18 @@
     }
 
     // =========================================================================
-    // SOVEREIGN PRO LICENSING & CHECKOUT
+    // SOVEREIGN 100% UNLOCKED OPEN ACCESS
     // =========================================================================
 
     function isProLicensed() {
-      return localStorage.getItem('zoth_ufo_licensed') === 'true' ||
-             localStorage.getItem('zoth_sacred_licensed') === 'true' ||
-             localStorage.getItem('ufo_sacred_licensed') === 'true';
+      return true;
     }
 
     function checkLicense() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const isParamLicensed = urlParams.get('licensed') === 'true' || urlParams.get('pro') === 'true';
-      if (isParamLicensed) {
-        unlockPro();
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState({}, document.title, window.location.pathname);
-        }
-        return;
-      }
-      if (isProLicensed()) {
-        applyProUnlockedUI();
-      }
+      applyProUnlockedUI();
     }
 
     function unlockPro() {
-      localStorage.setItem('zoth_ufo_licensed', 'true');
-      localStorage.setItem('zoth_sacred_licensed', 'true');
-      localStorage.setItem('ufo_sacred_licensed', 'true');
       applyProUnlockedUI();
     }
 
@@ -1971,7 +1959,7 @@
           }
         });
       } else {
-        window.open('https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK', '_blank');
+        window.open('solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK', '_blank');
       }
     }
 
@@ -2016,51 +2004,15 @@
     });
   </script>
 
-  <!-- Pro Paywall & License Key Activation Modal -->
-  <div id="licenseModal" data-alias="paywall-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
-    <div style="background:#14141c; border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:24px; width:100%; max-width:540px; display:flex; flex-direction:column; gap:16px; box-shadow:0 20px 50px rgba(0,0,0,0.8); position:relative; color:#f4f4f5;">
-      <button type="button" onclick="closeLicenseModal()" style="position:absolute; top:16px; right:16px; background:transparent; border:none; font-size:22px; color:#a1a1aa; cursor:pointer;">&times;</button>
-      <div style="display:inline-block; background:#D4AF37; color:#08080B; font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px; letter-spacing:0.5px; width:fit-content;">PRO FOUNDING ACCESS</div>
-      <h2 style="font-size:1.35rem; color:#FFF; margin:0;">Unlock UFO Sacred Geometry Pro</h2>
-      <p style="font-size:0.82rem; color:#a1a1aa; margin:0;">
-        Feature triggered: <strong id="paywall-feature-label" style="color:#D4AF37;">Precision CAD & 3D Exporters</strong>
-      </p>
-
-      <ul style="list-style:none; padding:0; margin:4px 0; font-size:0.83rem; color:#f4f4f5; display:flex; flex-direction:column; gap:8px;">
-        <li>✅ <strong>AutoCAD DXF R12 / 2000 Exporter</strong> for CNC Routers, Laser Cutters, and Waterjet Mills</li>
-        <li>✅ <strong>Wavefront OBJ 3D Meshes</strong> with procedural vertex normals and polygonal faces</li>
-        <li>✅ <strong>Infinite Scalable Vector SVGs</strong> & 2000x2000 High-Resolution PNG Renders</li>
-        <li>✅ <strong>All 12 Sacred & Crop Circle Agro-Glyph Presets</strong> (Metatron's Cube, Sri Yantra, Torus Vortex, Fibonacci, Platonic Solids)</li>
-        <li>✅ <strong>100% In-Browser Vector CAD Engine</strong> &bull; Zero Cloud Telemetry &bull; Complete Privacy</li>
-        <li>✅ <strong>Permanent Lifetime Access</strong> with Dual Payment Rails (Stripe + Solana)</li>
-      </ul>
-
-      <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.3); border-radius:10px; padding:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-        <div>
-          <div style="font-size:0.7rem; color:#D4AF37; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Lifetime Founding License</div>
-          <div style="font-size:1.4rem; font-weight:800; color:#FFF;">$19 <span style="font-size:0.82rem; font-weight:400; text-decoration:line-through; color:#a1a1aa;">$79</span></div>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener noreferrer" style="background:#635BFF; color:#FFF; text-decoration:none; padding:8px 14px; border-radius:6px; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;">
-            <span>★ Stripe / Card</span>
-          </a>
-          <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" target="_blank" rel="noopener noreferrer" onclick="openDePayCheckout(event)" style="background:linear-gradient(90deg, #9945FF 0%, #14F195 100%); color:#000; text-decoration:none; padding:8px 14px; border-radius:6px; font-weight:800; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;">
-            <span>⚡ Solana DePay</span>
-          </a>
-        </div>
-      </div>
-
-      <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:12px;">
-        <label for="license-input" style="display:block; font-size:0.75rem; color:#a1a1aa; margin-bottom:6px;">Already purchased? Enter your receipt email or license key:</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="license-input" style="background:#08080b; border:1px solid #27272a; color:#FFF; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; flex:1; outline:none;" placeholder="UFO-PRO-2026 or receipt email">
-          <button id="btnActivateKey" onclick="activateLicense()" style="background:#D4AF37; border:none; color:#08080b; padding:8px 16px; border-radius:6px; font-weight:800; font-size:0.8rem; cursor:pointer;">Activate</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   <footer style="border-top:1px solid rgba(255,255,255,0.08); padding:1.5rem 1rem; text-align:center; font-family:var(--font-mono); font-size:0.75rem; color:#71717a;">
+    <div style="margin-bottom:0.75rem; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
+      <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:rgba(99,91,255,0.15); border:1px solid rgba(99,91,255,0.4); color:#c7c5ff; text-decoration:none; padding:5px 12px; border-radius:6px; font-size:0.72rem; font-weight:600;">
+        <span>☕ Buy Us a Coffee</span>
+      </a>
+      <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:rgba(20,241,149,0.12); border:1px solid rgba(20,241,149,0.4); color:#6efcd0; text-decoration:none; padding:5px 12px; border-radius:6px; font-size:0.72rem; font-weight:600;">
+        <span>◎ Solana: GG2e...XoK</span>
+      </a>
+    </div>
     <div>Engineered by <strong>Neal Frazier Tech</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">NullAI Platform</a></div>
     <div style="margin-top:0.4rem; font-size:0.68rem; color:#52525b;">Repository: <a href="https://github.com/1nc0gn30/ufo-sacred-geometry" target="_blank" rel="noopener" style="color:#a1a1aa;">github.com/1nc0gn30/ufo-sacred-geometry</a> &middot; 100% In-Browser Computation &middot; Zero Cloud Egress</div>
   </footer>

@@ -7,7 +7,9 @@
 # UFO Sacred Geometry Studio & Agroglyph Architecture 🛸📐
 
 [![Live App](https://img.shields.io/badge/Live%20App-ufo--sacred--geometry.netlify.app-00ff88?style=flat-square&logo=netlify)](https://ufo-sacred-geometry.netlify.app/)
-[![Founding Pro License](https://img.shields.io/badge/Pro%20Lifetime-$19%20USD%20(Stripe%20%2B%20Solana)-d4af37?style=flat-square)](https://buy.stripe.com/7sI7sA8hM2X8eFG8ww)
+[![Access: 100% Free & Open](https://img.shields.io/badge/Access-100%25%20Free%20%26%20Open-00ff88?style=flat-square)](https://ufo-sacred-geometry.netlify.app/)
+[![Buy Us a Coffee](https://img.shields.io/badge/%E2%98%95_Buy_Us_a_Coffee-Stripe-635bff?style=flat-square)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+[![Solana Tip](https://img.shields.io/badge/%E2%97%8E_Tip-Solana-14f195?style=flat-square)](solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK)
 [![CI Multi-OS Test Matrix](https://github.com/1nc0gn30/ufo-sacred-geometry/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/ufo-sacred-geometry/actions)
 [![Python 3.9 - 3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20(stdlib%20only)-brightgreen.svg)](https://docs.python.org/3/library/)
@@ -249,6 +251,17 @@ pytest --cov=ufo_sacred_geometry -v
 - `tests/test_cli.py`: Subcommand argument parsing, exit codes, file generation.
 - `tests/test_mcp_server.py`: JSON-RPC 2.0 protocol methods, tool handlers, resources, and prompts.
 - `tests/test_ui_server.py`: HTTP REST server endpoints, static file delivery, and CORS handling.
+
+---
+
+## ☕ 100% Free Open-Access Architecture & Support
+
+UFO Sacred Geometry Studio is **100% free, unlocked, and open-source by default**. Every feature—AutoCAD DXF export, Wavefront OBJ mesh generation, high-resolution vector SVG downloads, and all 29 sacred agro-glyph presets—is accessible with zero paywalls, zero license keys, and zero blurred features.
+
+If you find this software valuable for your creative projects, CAD engineering, or research, consider supporting ongoing development:
+
+- ☕ **Buy Us a Coffee (Stripe)**: [https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+- ◎ **Solana Wallet Tip**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`
 
 ---
 
