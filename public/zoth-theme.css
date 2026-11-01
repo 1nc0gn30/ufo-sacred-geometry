@@ -155,9 +155,15 @@
 }
 
 /* ---- Base body ---- */
-body {
+html:not([data-theme="minimalist-light"]):not([data-theme="light"]) body {
   background: var(--zoth-void) !important;
   color: var(--zoth-text-2) !important;
+  font-family: var(--zoth-font-sans) !important;
+}
+html[data-theme="minimalist-light"] body,
+html[data-theme="light"] body {
+  background: #F8F6F0 !important;
+  color: #181612 !important;
   font-family: var(--zoth-font-sans) !important;
 }
 

@@ -271,5 +271,5 @@ Distributed under the **MIT License**. See `LICENSE` for details.
 
 ---
 
-Engineered by **Neal Frazier Tech** ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)  
+Engineered by **1nc0gn30 • NullAI** ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)  
 *Sovereign Local-First Architecture • 100% In-Browser Vector CAD Engine • Zero Cloud Egress*

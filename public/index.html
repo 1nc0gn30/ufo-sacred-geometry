@@ -43,13 +43,13 @@
           "availability": "https://schema.org/InStock",
           "seller": {
             "@type": "Organization",
-            "name": "Neal Frazier Tech",
-            "url": "https://nealfrazier.tech"
+            "name": "1nc0gn30 • NullAI",
+            "url": "https://nullai.tech"
           }
         },
         "author": {
           "@type": "Person",
-          "name": "Neal Frazier",
+          "name": "1nc0gn30",
           "alternateName": "1nc0gn30",
           "url": "https://github.com/1nc0gn30"
         }
@@ -798,54 +798,39 @@
         flex-direction: column !important;
         align-items: stretch !important;
       }
-      .main-viewport {
+      .studio-layout {
+        display: flex !important;
         flex-direction: column !important;
+        height: auto !important;
+        overflow-y: auto !important;
       }
-      .sidebar {
+      .top-actions {
+        flex-wrap: wrap !important;
         width: 100% !important;
-        max-width: 100% !important;
+      }
+      .studio-header {
+        height: auto !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding: 12px !important;
       }
     }
-    /* Sovereign Pro Paywall Invariants */
-    .paywall-blur {
-      filter: none;
-      user-select: none;
+    html[data-theme="minimalist-light"] .studio-panel,
+    html[data-theme="minimalist-light"] .stat-card,
+    html[data-theme="minimalist-light"] .preset-card {
+      background: #FFFFFF !important;
+      border-color: #DCD6C8 !important;
+      color: #181612 !important;
+    }
+    html[data-theme="minimalist-light"] .ast-preview {
+      background: #F1EFEA !important;
+      color: #181612 !important;
+      border-color: #DCD6C8 !important;
     }
   </style>
-  
+
   <link rel="stylesheet" href="zoth-theme.css">
-
-  <!-- Zoth 100% Open-Access & Buy Us a Coffee Invariant -->
-  <script id="zoth-open-access-init">
-    (function() {
-      try {
-        var keys = ['agent_audiocipher_pro', 'agent_cyber_turtle_pro', 'agent_datamosh_pro', 'agent_nexus3d_pro', 'agent_policy_pro', 'audiocipher_license', 'audiocipher_pro_licensed', 'badge3d_pro_licensed', 'certpath_pro_key', 'certpath_pro_licensed', 'cron_rhythm_pro_key', 'cron_rhythm_pro_licensed', 'cwv-speed-engine_pro_licensed', 'cwv_pro_licensed', 'cyber_turtle_pro_licensed', 'datamosh_pro_licensed', 'deepsearch-research-agent_pro_licensed', 'deepsearch_pro_licensed', 'entropy_studio_licensed', 'envguard-secrets-vault_pro_licensed', 'envguard_pro_license', 'etsy_connector_pro', 'jwt_guard_licensed', 'mdg_pro_licensed', 'neuro_pro_licensed', 'nexus3d_pro_licensed', 'omnipost_pro_key', 'omnipost_pro_licensed', 'osint_pro_licensed', 'payload-entropy-studio_pro_licensed', 'polyglot_pro_licensed', 'pro_licensed', 'promptmaster_pro_licensed', 'promptmaster_pro_active', 'robots-txt-auditor_pro_licensed', 'robots_pro_licensed', 'schema_illustrator_pro_licensed', 'sovereign_pro_licensed', 'subsweep-lead-scanner_pro_licensed', 'subsweep_licensed', 'turtle_pro_licensed', 'ufo_sacred_licensed', 'vector-search-engine_pro_licensed', 'vector_studio_pro_licensed', 'web-security-guard_pro_licensed', 'web_security_guard_licensed', 'yourdigitalspace_pro', 'zela_guide_pro_licensed', 'zoth_ascii_magic_pro', 'zoth_audiocipher_licensed', 'zoth_badge3d_licensed', 'zoth_cyber_turtle_licensed', 'zoth_datamosh_licensed', 'zoth_etsy_licensed', 'zoth_nexus3d_licensed', 'zoth_osint_licensed', 'zoth_policy_licensed', 'zoth_sacred_licensed', 'zoth_ufo_licensed'];
-        for (var i = 0; i < keys.length; i++) {
-          localStorage.setItem(keys[i], 'true');
-        }
-        localStorage.setItem('pm_license_v2', JSON.stringify({ method: 'open_access', ref: 'free_forever', at: '2026-01-01T00:00:00Z' }));
-        window.isPro = true;
-        window.isProLicensed = true;
-      } catch (e) {}
-    })();
-  </script>
-  <style id="zoth-open-access-override">
-    .paywall-overlay, .output-paywall-overlay, #outputPaywallOverlay, #schemaPaywallOverlay,
-    #transformerPaywallOverlay, #proPaywallModal, #licenseModal, #salesBanner, #founding-offer-banner,
-    #funnelHeroBanner, [data-alias="paywallOverlay"], [data-alias="founding-offer-banner"] {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
-    .paywall-wrap #outputPreview, .paywall-wrap #reportContentArea, .paywall-content,
-    .paywall-content.locked, .paywall-wrap.is-locked #outputPreview, .paywall-wrap.locked #outputPreview {
-      filter: none !important;
-      -webkit-filter: none !important;
-      user-select: auto !important;
-      pointer-events: auto !important;
-    }
-  </style>
-
 </head>
 <body>
 
@@ -884,8 +869,8 @@
         </select>
       </div>
 
-      <button class="btn btn-secondary" onclick="openLicenseModal()" style="border:1px solid rgba(212,175,55,0.4); color:#d4af37; padding:4px 10px; font-size:12px;">
-        <span>✦ 100% Free & Open Access</span>
+      <button class="btn btn-secondary" id="themeToggleBtn" onclick="toggleLightDarkTheme()" style="border:1px solid rgba(212,175,55,0.4); color:#d4af37; padding:4px 10px; font-size:12px;">
+        <span id="themeToggleLabel">☀️ Light Mode</span>
       </button>
 
       <button class="btn btn-secondary" onclick="toggleAutoRotate()" id="btn-spin" title="Auto-Rotate">
@@ -1872,117 +1857,30 @@
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // =========================================================================
-    // SOVEREIGN 100% UNLOCKED OPEN ACCESS
-    // =========================================================================
-
-    function isProLicensed() {
-      return true;
-    }
-
-    function checkLicense() {
-      applyProUnlockedUI();
-    }
-
-    function unlockPro() {
-      applyProUnlockedUI();
-    }
-
-    function applyProUnlockedUI() {
-      const banner = document.getElementById('salesBanner');
-      if (banner) banner.style.display = 'none';
-
-      const overlay = document.getElementById('paywall-lock-overlay');
-      if (overlay) overlay.style.display = 'none';
-
-      const target = document.getElementById('paywall-target');
-      if (target) {
-        target.classList.remove('paywall-blur');
-        target.style.filter = 'none';
-        target.style.pointerEvents = 'auto';
-        target.style.userSelect = 'auto';
-      }
-
-      const badge = document.getElementById('licenseBadge') || document.getElementById('pro-badge');
-      if (badge) {
-        badge.innerText = '⭐ PRO ACTIVE';
-        badge.style.background = '#00ff88';
-        badge.style.color = '#08080b';
-        badge.style.boxShadow = '0 0 10px rgba(0, 255, 136, 0.4)';
-      }
-    }
-
-    function openLicenseModal(feature) {
-      if (feature) {
-        const featEl = document.getElementById('paywall-feature-label');
-        if (featEl) featEl.textContent = feature;
-      }
-      const m = document.getElementById('licenseModal') || document.getElementById('license-modal');
-      if (m) m.style.display = 'flex';
-    }
-
-    function closeLicenseModal() {
-      const m = document.getElementById('licenseModal') || document.getElementById('license-modal');
-      if (m) m.style.display = 'none';
-    }
-
-    function activateLicense(providedKey) {
-      const inputEl = document.getElementById('license-input');
-      const val = (providedKey || (inputEl ? inputEl.value : '')).trim();
-      if (val.length >= 3) {
-        localStorage.setItem('ufo_sacred_key', val);
-        unlockPro();
-        closeLicenseModal();
-        showToast('★ Pro License Activated! Lifetime access unlocked.');
-        return true;
-      } else {
-        showToast('⚠️ Please enter a valid license key or receipt email.');
-        return false;
-      }
-    }
-    window.activateLicenseKey = activateLicense;
-
-    function openDePayCheckout(e) {
-      if (e) e.preventDefault();
-      if (typeof DePayButtons !== 'undefined' && DePayButtons.init) {
-        DePayButtons.init({
-          accept: [
-            { blockchain: 'solana', token: '11111111111111111111111111111111', receiver: 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK' },
-            { blockchain: 'solana', token: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', receiver: 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK' }
-          ],
-          amount: { currency: 'USD', fix: 19.00 },
-          closed: () => {},
-          succeeded: () => {
-            unlockPro();
-            closeLicenseModal();
-            showToast('★ Solana Payment Verified! Pro Lifetime Unlocked.');
-          }
-        });
-      } else {
-        window.open('solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK', '_blank');
-      }
+    function toggleLightDarkTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = (current === 'minimalist-light') ? 'sacred-gold' : 'minimalist-light';
+      changeTheme(next);
+      const sel = document.getElementById('theme-selector');
+      if (sel) sel.value = next;
+      const lbl = document.getElementById('themeToggleLabel');
+      if (lbl) lbl.textContent = (next === 'minimalist-light') ? '🌙 Dark Mode' : '☀️ Light Mode';
     }
 
     async function checkBackendStatus() {
-      // In standalone client-side mode or static server, do not query nonexistent backend API
-      if (window.location.protocol === 'file:' || !window.location.port || window.location.port !== '8080') {
-        const dot = document.getElementById('status-dot');
-        const txt = document.getElementById('status-text');
-        if (dot) dot.className = 'status-dot';
-        if (txt) txt.innerText = 'Standalone JS Engine';
-        return;
-      }
       try {
         const res = await fetch('/api/stats');
         if (res.ok) {
           const data = await res.json();
           document.getElementById('status-dot').className = 'status-dot';
           document.getElementById('status-text').innerText = 'Python Server Online';
+          return;
         }
-      } catch (err) {
-        document.getElementById('status-dot').className = 'status-dot offline';
-        document.getElementById('status-text').innerText = 'Standalone JS Engine';
-      }
+      } catch (err) {}
+      const dot = document.getElementById('status-dot');
+      const txt = document.getElementById('status-text');
+      if (dot) dot.className = 'status-dot';
+      if (txt) txt.innerText = 'Standalone JS Engine';
     }
 
     async function runDiagnostics() {
@@ -2000,7 +1898,6 @@
     // Auto-start on DOM Load
     window.addEventListener('DOMContentLoaded', () => {
       initUI();
-      checkLicense();
     });
   </script>
 
@@ -2013,8 +1910,9 @@
         <span>◎ Solana: GG2e...XoK</span>
       </a>
     </div>
-    <div>Engineered by <strong>Neal Frazier Tech</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">NullAI Platform</a></div>
+    <div>Engineered by <strong>1nc0gn30 • NullAI</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">NullAI Platform</a></div>
     <div style="margin-top:0.4rem; font-size:0.68rem; color:#52525b;">Repository: <a href="https://github.com/1nc0gn30/ufo-sacred-geometry" target="_blank" rel="noopener" style="color:#a1a1aa;">github.com/1nc0gn30/ufo-sacred-geometry</a> &middot; 100% In-Browser Computation &middot; Zero Cloud Egress</div>
   </footer>
+  <script src="/assets/sovereign-upgrade.js" defer></script>
 </body>
 </html>
