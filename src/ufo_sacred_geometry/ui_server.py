@@ -8,7 +8,6 @@ geometry export pipelines.
 
 from __future__ import annotations
 
-import cgi
 import json
 import math
 import os
