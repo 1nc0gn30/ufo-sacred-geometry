@@ -1913,6 +1913,22 @@
     <div>Engineered by <strong>1nc0gn30 • NullAI</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none;">NullAI Platform</a></div>
     <div style="margin-top:0.4rem; font-size:0.68rem; color:#52525b;">Repository: <a href="https://github.com/1nc0gn30/ufo-sacred-geometry" target="_blank" rel="noopener" style="color:#a1a1aa;">github.com/1nc0gn30/ufo-sacred-geometry</a> &middot; 100% In-Browser Computation &middot; Zero Cloud Egress</div>
   </footer>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "ufo-sacred-geometry",
+          toolName: "UFO Sacred Geometry Studio",
+          tagline: "Procedural sacred geometry canvas engine and harmonic vector visualizer!",
+          accentColor: "#EAB308",
+          steps: [{"icon": "\ud83d\udef8", "title": "Harmonic Mathematical Art", "desc": "Generate intricate Flower of Life, Metatron's Cube, and golden-ratio spirals with real-time math equations."}, {"icon": "\ud83c\udf00", "title": "Dynamic Resonance Waves", "desc": "Animate frequency waves and harmonic oscillations with buttery-smooth 60 FPS canvas rendering."}, {"icon": "\ud83c\udfa8", "title": "Export Infinite SVGs", "desc": "Download crisp vector paths suitable for vinyl plotting, laser cutting, or celestial digital art."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
