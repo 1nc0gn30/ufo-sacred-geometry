@@ -88,8 +88,8 @@ from .models import (
     Spline,
 )
 
-__version__ = "0.1.0"
-__author__ = "UFO Sacred Geometry Architecture Team"
+__version__ = "2.5.0"
+__author__ = "1nc0gn30"
 __license__ = "MIT"
 
 PHI = (1.0 + math.sqrt(5.0)) / 2.0  # 1.618033988749895 - The Golden Ratio

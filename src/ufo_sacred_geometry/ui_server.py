@@ -633,7 +633,7 @@ def export_ast_to_obj(ast: GeometryAST) -> str:
 class SacredGeometryRequestHandler(BaseHTTPRequestHandler):
     """Threading HTTP Handler serving static UI assets and REST API endpoints."""
 
-    server_version = "SacredGeometryStudio/1.0.0"
+    server_version = "SacredGeometryStudio/2.5.0"
 
     def do_OPTIONS(self) -> None:
         """Handle CORS pre-flight requests."""
@@ -764,7 +764,7 @@ class SacredGeometryRequestHandler(BaseHTTPRequestHandler):
         """Return engine operational metrics."""
         self._send_json({
             "service": "UFO Sacred Geometry Studio",
-            "version": "1.0.0",
+            "version": "2.5.0",
             "uptime_seconds": round(time.time() - SERVER_START_TIME, 2),
             "generated_geometries_count": GENERATION_COUNT,
             "registered_presets_count": len(CATALOG_PRESETS),

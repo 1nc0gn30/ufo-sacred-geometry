@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ufo-sacred-geometry"
-version = "1.0.0"
-description = "UFO Sacred Geometry Studio - Parametric sacred geometry, crop circle agro-glyphs, and platonic vector generation engine (design influenced by Material 3)"
+version = "2.5.0"
+description = "UFO Sacred Geometry Studio - Parametric sacred geometry, crop circle agro-glyphs, and platonic vector generation engine"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "UFO Sacred Geometry Studio Team" }
+    { name = "1nc0gn30", email = "ops@nullai.tech" }
 ]
 keywords = [
     "sacred-geometry",

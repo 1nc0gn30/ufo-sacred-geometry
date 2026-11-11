@@ -310,7 +310,7 @@ EMBEDDED_STUDIO_HTML = """<!DOCTYPE html>
     <div class="logo-group">
       <div class="logo-icon">✦</div>
       <div class="logo-title">UFO SACRED GEOMETRY</div>
-      <span class="badge">STUDIO v0.1.0</span>
+      <span class="badge">STUDIO v2.5.0</span>
     </div>
     <div>
       <span style="font-size:0.8rem; color:var(--primary-bright); font-family:'JetBrains Mono'">MCP PROTOCOL READY</span>
@@ -1132,17 +1132,17 @@ def main(argv: Optional[List[str]] = None) -> int:
             "port": 8083,
             "presets_count": len(PRESETS_CATALOG),
             "platform": sys.platform,
-            "license": "100% Free & Open Access (Zero Paywalls)"
+            "license": "MIT"
         }
         if getattr(args, "json", False):
             print(json.dumps(status_data, indent=2))
         else:
-            print(tc.bold(f"\n✦ UFO Sacred Geometry Studio Status (v{__version__})\n"))
+            print(tc.bold(f"\nUFO Sacred Geometry Studio Status (v{__version__})\n"))
             print(f"  {tc.dim('Service:')}          {tc.green('ufo-sacred-geometry')}")
             print(f"  {tc.dim('Status:')}           {tc.green('HEALTHY')}")
             print(f"  {tc.dim('Port:')}             8083")
             print(f"  {tc.dim('Presets:')}          {len(PRESETS_CATALOG)} templates")
-            print(f"  {tc.dim('Access:')}           100% Free & Open Access (Zero Paywalls)\n")
+            print(f"  {tc.dim('License:')}          MIT (Open-Source)\n")
         return 0
 
     if getattr(args, "json", False) and not args.subcommand:
@@ -1153,7 +1153,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             "port": 8083,
             "presets_count": len(PRESETS_CATALOG),
             "platform": sys.platform,
-            "license": "100% Free & Open Access (Zero Paywalls)"
+            "license": "MIT"
         }
         print(json.dumps(status_data, indent=2))
         return 0

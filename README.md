@@ -1,332 +1,148 @@
-<div align="center">
-  <img src="assets/hero-banner.svg" alt="UFO Sacred Geometry Studio — Sovereign Architecture Banner" width="100%" />
-</div>
+# UFO Sacred Geometry Studio
 
-<br />
+<p align="center">
+  <img src="assets/hero-banner.svg" alt="UFO Sacred Geometry Studio Banner" width="100%" />
+</p>
 
-# UFO Sacred Geometry Studio & Agroglyph Architecture 🛸📐
+Pure-Python parametric sacred geometry, agro-glyph (crop circle), Kepler-Poinsot star polyhedron, Fibonacci phyllotaxis, and cymatic resonance CAD engine with multi-format exporters (`SVG`, AutoCAD `DXF` R12/2000, Wavefront `OBJ`, `JSON`), local HTTP workstation, and 9-tool Model Context Protocol (MCP) server. Zero external Python runtime dependencies.
 
-[![Live App](https://img.shields.io/badge/Live%20App-ufo--sacred--geometry.netlify.app-00ff88?style=flat-square&logo=netlify)](https://ufo-sacred-geometry.netlify.app/)
-[![Access: 100% Free & Open](https://img.shields.io/badge/Access-100%25%20Free%20%26%20Open-00ff88?style=flat-square)](https://ufo-sacred-geometry.netlify.app/)
-[![Buy Us a Coffee](https://img.shields.io/badge/%E2%98%95_Buy_Us_a_Coffee-Stripe-635bff?style=flat-square)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
-[![Solana Tip](https://img.shields.io/badge/%E2%97%8E_Tip-Solana-14f195?style=flat-square)](solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK)
-[![CI Multi-OS Test Matrix](https://github.com/1nc0gn30/ufo-sacred-geometry/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/ufo-sacred-geometry/actions)
-[![Python 3.9 - 3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20(stdlib%20only)-brightgreen.svg)](https://docs.python.org/3/library/)
-[![MCP 2024-11-05 Compliant](https://img.shields.io/badge/MCP-JSON--RPC%202.0%20Stdio-purple.svg)](https://modelcontextprotocol.io/)
-[![AutoCAD DXF & Wavefront OBJ](https://img.shields.io/badge/export-SVG%20%7C%20DXF%20%7C%20OBJ%20%7C%20JSON-orange.svg)](https://en.wikipedia.org/wiki/AutoCAD_DXF)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+- **Version**: `2.5.0`
+- **Default Loopback Endpoint**: `http://127.0.0.1:8083`
+- **Zoth Studio v2 Dossier**: [https://zoth.nullai.tech/tools/ufo-sacred-geometry](https://zoth.nullai.tech/tools/ufo-sacred-geometry)
+- **Author**: 1nc0gn30 (`@1nc0gn30` · [https://1nc0gn30.si](https://1nc0gn30.si)) & NullAI ([https://nullai.tech](https://nullai.tech))
+- **License**: MIT (100% free and open-source)
 
-A sovereign browser-based sacred geometry synthesizer, crop circle agro-glyph CAD generator, and AutoCAD DXF, Wavefront OBJ, and vector SVG exporter deployed at [https://ufo-sacred-geometry.netlify.app/](https://ufo-sacred-geometry.netlify.app/). Built with pure standard library Python 3 and a zero-dependency client-side SVG/Canvas vector engine.
+## Overview
 
----
+UFO Sacred Geometry Studio (`ufo-sacred-geometry`) constructs exact mathematical geometry ASTs (`Circle`, `Arc`, `LineSegment`, `Polygon`, `Spline`) in `src/ufo_sacred_geometry/` and renders them across CAD/3D formats and an interactive HTML5 Canvas workstation (`public/index.html`):
 
-## 🌟 Architectural Highlights
+- **Sacred & Platonic Generators (`generators/`)**: Flower of Life, Seed/Egg/Fruit of Life, Vesica Piscis, Metatron's Cube (13-center Platonic projection), Sri Yantra, Merkaba, Tree of Life, Golden Ratio spirals/rectangles/triangles, and Golden Ratio tori.
+- **Historical Agro-Glyphs & Phyllotaxis**: Milk Hill 409-circle Julia set, Barbury Castle tetrahedron, Chilbolton binary glyph, triskele vortices, and Golden-Angle (`137.507764°`) Fibonacci phyllotaxis parastichy discs.
+- **Star Polyhedra & Cymatic Resonance (`star_polyhedra.py`)**: Kepler-Poinsot and Archimedean projections (`cuboctahedron`, `small_stellated_dodecahedron`, `great_stellated_dodecahedron`, `icosidodecahedron`, `truncated_icosahedron`) plus Chladni cymatic nodal plates across Solfeggio (`174–963 Hz`) and Schumann (`7.83 Hz`) frequencies.
+- **CAD & 3D Exporters (`exporters/`)**: Scalable `SVG` (`gold`, `blueprint`, `neon_matrix`, `obsidian_dark`, `light_minimal` themes), AutoCAD `DXF` (CNC/laser/waterjet ready), and 3D extruded/beveled Wavefront `OBJ` relief meshes.
 
-- **Pure Python 3 Standard Library**: Zero third-party runtime dependencies (`math`, `json`, `dataclasses`, `http.server`, `urllib`, `pathlib`).
-- **Studio UI (Design influenced by Material 3)**: Clean typography, subtle elevation cards, interactive dual-engine viewport (SVG + 60 FPS HTML5 Canvas), dynamic layer tree inspector, and real-time AST viewer.
-- **Model Context Protocol (MCP) Server**: Full JSON-RPC 2.0 stdio server (`tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`) compatible with Claude Desktop, Cursor, Cline, and Antigravity.
-- **Multi-Format CAD / CAM Exporters**:
-  - **SVG**: Vector graphics with glowing neon drop-shadow filters (`feGaussianBlur`), layer groups (`<g id="...">`), and 6 color themes.
-  - **AutoCAD DXF (R2000 AC1015 / R12)**: Standard entities (`LINE`, `CIRCLE`, `ARC`, `LWPOLYLINE`) with AutoCAD Color Index (ACI 1–7) mapping for CNC routers and laser cutters.
-  - **Wavefront OBJ + MTL**: 3D embossed medallion meshes and wireframe polyhedra with surface normals (`vn`) and quad/tri faces (`f`) ready for slicing in Cura/PrusaSlicer.
-  - **JSON AST**: Serialized node tree with bounding boxes, layer styles, and parameters.
-- **20+ Curated Parametric Presets**: Across 5 cosmological domains (Classical Sacred Geometry, Hermetic & Polyhedral, Golden Ratio Harmonics, Vedic Yantras, Extraterrestrial Agro-Glyphs).
+## Architecture
 
-```
- ┌─────────────────────────────────────────────────────────────────────────────┐
- │  🛸 UFO Sacred Geometry Studio    |  CAD / CAM Vector Engineering Matrix    │
- ├───────────────────┬───────────────────────────────────┬─────────────────────┤
- │ Presets Gallery   │  Interactive Viewport (SVG / 2D)  │ Parameter Controls  │
- │ ───────────────── │ ───────────────────────────────── │ ─────────────────── │
- │ • Flower of Life  │              ╭───╮                │ Radius:   100.0 mm  │
- │ • Metatron's Cube │           ╭──┤   ├──╮             │ Iterations:      3  │
- │ • Sri Yantra      │          ╭╯  ╰───╯  ╰╮            │ Symmetry:       12  │
- │ • Milk Hill 409   │         ╭┤     ✡     ├╮           │ Golden Ratio: 1.618 │
- │ • Julia Set 151   │          ╰╮  ╭───╮  ╭╯            │ Stroke:      1.5 px │
- │ • Barbury Castle  │           ╰──┤   ├──╯             │ Theme:  Sacred Gold │
- │ • Merkaba Star    │              ╰───╯                │ ─────────────────── │
- │ • Torus Knot      │                                   │ [ SVG ] [ DXF CNC ] │
- │ • Phyllotaxis     │ Pan: [Drag] Zoom: [Wheel] Reset   │ [ 3D OBJ ] [ JSON ] │
- └───────────────────┴───────────────────────────────────┴─────────────────────┘
+```text
+ufo-sacred-geometry/
+├── assets/hero-banner.svg                  # Studio vector banner
+├── bin/ufo-geometry.js                     # Unified CLI, web, and Electron launcher
+├── public/index.html                       # Interactive HTML5 Canvas CAD workstation
+├── src/ufo_sacred_geometry/
+│   ├── models.py                           # GeometryAST, Point2D/3D, Circle, Arc, Polygon, Spline
+│   ├── catalog.py                          # Preset catalog, category filters, & harmonic metadata
+│   ├── generators/                         # Sacred geometry, agro-glyph, star polyhedra, & cymatics
+│   ├── exporters/                          # SVG, AutoCAD DXF R12/2000, & Wavefront OBJ exporters
+│   ├── ui_server.py                        # ThreadingHTTPServer REST API & static host (:8083)
+│   ├── mcp_server.py                       # JSON-RPC 2.0 stdio MCP server (2024-11-05, 9 tools)
+│   └── cli.py                              # Subcommand CLI (ufo-sacred-geometry / ufogeom)
+└── tests/                                  # Pytest AST, generator, exporter, CLI, MCP, & HTTP suite
 ```
 
----
+## Quickstart
 
-## 📐 Mathematical Foundations
-
-### 1. Golden Ratio & Phyllotaxis Harmonics
-- **Golden Ratio ($\Phi$)**:
-  $$\Phi = \frac{1 + \sqrt{5}}{2} \approx 1.618033988749895$$
-- **Golden Angle ($\theta$)**:
-  $$\theta = 360^\circ \times \left(1 - \frac{1}{\Phi}\right) \approx 137.50776405003785^\circ$$
-- **Vogel Phyllotaxis Model**:
-  $$r_n = c \sqrt{n}, \quad \theta_n = n \times 137.507764^\circ$$
-  Generates optimal botanical packing (sunflowers, pinecones) and connects Fibonacci parastichy spirals $(F_k, F_{k+1})$ such as $(21, 34)$ or $(34, 55)$.
-
-### 2. Metatron's Cube & Platonic Polyhedra
-- **Fruit of Life**: 13 nodal centers $(0, 2R, 4R)$ arranged in hexagonal symmetry $\mathbb{Z}_6$.
-- **Complete Graph ($K_{13}$)**: Connecting all 13 centers produces $\binom{13}{2} = 78$ sacred line segments.
-- **Euler Characteristic**:
-  $$V - E + F = 2$$
-  Yields exact 3D coordinates for all 5 Platonic Solids (Tetrahedron, Hexahedron/Cube, Octahedron, Icosahedron, Dodecahedron) with 3D Euler rotation matrices:
-  $$R_x(\alpha) \cdot R_y(\beta) \cdot R_z(\gamma)$$
-
-### 3. Vedic Sri Yantra (Cosmic Navayoni Chakra)
-- 9 interlocking primary triangles (4 upright Shiva pointing upward, 5 inverted Shakti pointing downward).
-- Intersect to form 43 secondary sub-triangles, surrounding the central bindu point, enveloped by 8-petal and 16-petal lotus circles and the 4-gate Bhupura citadel.
-
-### 4. Extraterrestrial Agro-Glyphs (Crop Circles)
-- **Milk Hill 2001 (Triple Julia Set)**: 6 curved spiral arms consisting of 409 mathematically graduating circles discovered in Wiltshire, UK.
-- **Stonehenge 1996 (Julia Set)**: 151 circles forming a computer-generated Julia set fractal curve.
-- **Barbury Castle 1991 (Tetrahedral Ratchet)**: 3-lobed ratchet spiral inscribed in a spherical triangle.
-- **Chilbolton 2001 (Arecibo Reply)**: $73 \times 23$ binary telemetry matrix encoding DNA modifications and silicon biochemistry.
-
----
-
-## 🚀 Quick Start
-
-### Installation
+Clone the repository and install in editable mode:
 
 ```bash
-# Clone the repository
-git clone https://github.com/NullAITech/ufo-sacred-geometry.git
+git clone https://github.com/1nc0gn30/ufo-sacred-geometry.git
 cd ufo-sacred-geometry
-
-# Install in editable mode
-pip install -e .
-
-# Or run directly with zero installation via python3
-python3 -m ufo_sacred_geometry.cli --help
+python3 -m pip install -e ".[dev]"
 ```
 
----
-
-## 🖥️ UFO Sacred Geometry Studio Web UI
-
-Launch the embedded CAD Studio locally (design influenced by Material 3) with pure Python standard library:
+Launch the local web workstation and REST server on `127.0.0.1:8083`:
 
 ```bash
-# Launch Studio UI on default port 8080 (auto-opens browser)
-ufo-sacred-geometry serve
-
-# Custom host and port
-ufo-sacred-geometry serve --host 0.0.0.0 --port 9000 --no-browser
+ufogeom serve --host 127.0.0.1 --port 8083
+# or via the Node wrapper:
+node bin/ufo-geometry.js web
 ```
 
-### REST API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/` | Serves Studio Web App (design influenced by Material 3) |
-| `GET` | `/api/presets` | List all 20+ presets with parameters and metadata |
-| `POST` | `/api/generate` | Generate AST and vector SVG markup |
-| `POST` | `/api/export-svg` | Download styled SVG vector file |
-| `POST` | `/api/export-dxf` | Download AutoCAD DXF file for CNC/laser cutting |
-| `POST` | `/api/export-obj` | Download 3D Wavefront OBJ mesh file |
-| `GET` | `/api/stats` | Return system capabilities and primitive registry |
-| `GET` | `/api/diagnostics` | High-precision float benchmarking and OS info |
-
----
-
-## 💻 Command Line Interface (CLI)
-
-The `ufo-sacred-geometry` CLI (also available as `sacred-geometry` and `ufogeom`) provides complete scripting capabilities:
+Verify service health:
 
 ```bash
-# List all presets
-ufo-sacred-geometry presets
-
-# Filter presets by category in JSON format
-ufo-sacred-geometry presets --category "Classical Sacred Geometry" --json
-
-# Generate Flower of Life SVG with Sacred Gold theme
-ufo-sacred-geometry generate flower_of_life --radius 120 --iterations 3 --theme gold --output flower.svg
-
-# Generate Metatron's Cube DXF for CNC routing
-ufo-sacred-geometry export-dxf metatrons_cube --radius 100 --output metatron.dxf
-
-# Generate 3D printable Merkaba Medallion OBJ mesh with cylinder base
-ufo-sacred-geometry export-obj merkaba_star --radius 80 --relief 3.5 --base-type cylinder --output merkaba.obj
-
-# Generate Milk Hill 409-circle crop circle
-ufo-sacred-geometry generate crop_circle_milk_hill --scale 250 --theme neon_matrix --output milk_hill.svg
-
-# Run diagnostics and math benchmarking
-ufo-sacred-geometry diagnostics
+curl -s http://127.0.0.1:8083/health
 ```
 
----
+## CLI & MCP Usage
 
-## 🤖 Model Context Protocol (MCP) Server Setup
+### CLI Subcommands
 
-Integrate `ufo-sacred-geometry` directly with AI agents, Claude Desktop, Cursor, and Cline using the stdio JSON-RPC 2.0 protocol.
-
-### Claude Desktop Configuration
-
-Add the following to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "ufo-sacred-geometry": {
-      "command": "python3",
-      "args": ["-m", "ufo_sacred_geometry.mcp_server"]
-    }
-  }
-}
-```
-
-### Available MCP Tools
-
-1. `geometry_generate`: Synthesize geometry AST and SVG with parametric controls.
-2. `geometry_export_svg`: Export SVG with glow filters and custom themes.
-3. `geometry_export_dxf`: Export AutoCAD DXF R12/2000 files for laser cutters.
-4. `geometry_export_obj`: Export 3D Wavefront OBJ models for 3D printing.
-5. `geometry_presets`: Query pattern catalog and historical metadata.
-6. `geometry_phyllotaxis`: Generate Vogel sunflower disc spirals.
-7. `geometry_diagnostics`: Inspect floating-point precision and hardware capabilities.
-
----
-
-## 🐍 Python API Reference
-
-```python
-import ufo_sacred_geometry as geom
-
-# 1. Generate Flower of Life AST
-ast = geom.generate_flower_of_life(radius=50.0, rings=3, outer_rings=True)
-print(f"Total Circles: {len(ast.circles)}")
-
-# 2. Export to SVG with Sacred Gold Theme & Glow
-svg_code = geom.export_svg(ast, theme="dark_gold", glow=True, file_path="flower.svg")
-
-# 3. Export to AutoCAD DXF for Laser Cutting
-dxf_code = geom.export_dxf(ast, file_path="flower.dxf")
-
-# 4. Export to 3D Embossed Wavefront OBJ Medallion
-obj_code = geom.export_obj(ast, file_path="flower.obj", relief_depth=4.0, base_type="cylinder")
-
-# 5. Generate Platonic Solid 3D Projections
-cube_ast = geom.generate_platonic_solid_projection(solid_type="dodecahedron", size=140.0, rot_x=0.55, rot_y=0.75)
-
-# 6. Generate 409-Circle Milk Hill Crop Circle
-milk_hill = geom.generate_milk_hill_glyph(scale=200.0)
-print(f"Milk Hill Circles: {len(milk_hill.circles)}")  # 409 circles
-```
-
----
-
-## 🎨 Color Themes
-
-| Theme Key | Visual Description | Background | Primary Stroke | Glow / Accent |
-|---|---|---|---|---|
-| `gold` / `dark_gold` | Sacred 24K Temple Gold | `#0f0f18` | `#ffd700` | `#ffaa00` |
-| `blueprint` | Technical Blueprint | `#0e2a47` | `#e0fbfc` | `#48cae4` |
-| `neon_matrix` | Matrix Phosphor Green | `#050805` | `#00ff66` | `#39ff14` |
-| `obsidian_dark` | Obsidian Cosmic Purple | `#180828` | `#e056fd` | `#bf00ff` |
-| `light_minimal` | Clean Slate (Material 3 Inspired) | `#ffffff` | `#1a1a24` | `#718093` |
-| `monochrome_laser`| High-Contrast CNC / Laser Cut | `#000000` | `#ffffff` | None |
-
----
-
-## 🧪 Comprehensive Test Suite
-
-Run the 100% standard library test suite with pytest:
+Entry points `ufo-sacred-geometry`, `sacred-geometry`, `ufogeom`, and `node bin/ufo-geometry.js` share the same subcommands:
 
 ```bash
-# Run all tests across models, generators, exporters, CLI, MCP, and UI server
-pytest -v
+# Help, version, and JSON status
+ufogeom --help
+ufogeom --version
+ufogeom --status --json
 
-# Run with test coverage
-pytest --cov=ufo_sacred_geometry -v
+# List presets filtered by category (all, sacred, crop_circle, spiral, yantra, field, platonic)
+ufogeom presets --category all --json
+
+# Generate a pattern AST or vector/CAD file with custom parameters
+ufogeom generate metatrons_cube --radius 120 --iterations 2 --theme blueprint -f svg -o metatron.svg
+ufogeom generate crop_circle --glyph-type julia_set --radius 140 -f dxf -o milk_hill.dxf
+ufogeom generate phyllotaxis --seed-count 400 --divergence-angle 137.507764 --json
+
+# Direct CAD/3D export to SVG, DXF, or extruded Wavefront OBJ
+ufogeom export flower_of_life -f dxf --radius 100 --iterations 3 -o flower.dxf
+ufogeom export merkaba -f obj --radius 120 --extrusion 5.0 --bevel --base-plate -o merkaba.obj
+
+# System diagnostics and internal self-verification
+ufogeom doctor --json
+ufogeom test
 ```
 
-### Test Coverage Architecture
+### ZothOS v3.4.0 Integration
 
-- `tests/test_compat.py`: Cross-platform OS detection, atomic I/O, path normalization (Linux, macOS, Windows, Termux).
-- `tests/test_models.py`: 2D/3D affine transformations, bounding boxes, AST serialization/deserialization.
-- `tests/test_generators.py`: Parametric geometry generators, Platonic solids, Vogel phyllotaxis, agro-glyphs.
-- `tests/test_exporters.py`: SVG XML validation, AutoCAD DXF R2000 structure, Wavefront OBJ/MTL topology.
-- `tests/test_cli.py`: Subcommand argument parsing, exit codes, file generation.
-- `tests/test_mcp_server.py`: JSON-RPC 2.0 protocol methods, tool handlers, resources, and prompts.
-- `tests/test_ui_server.py`: HTTP REST server endpoints, static file delivery, and CORS handling.
+On ZothOS v3.4.0 workstations, `ufo-geometry` and `ufogeom` are linked onto the system `PATH` and pair with the Zoth Studio v2 dossier (`https://zoth.nullai.tech/tools/ufo-sacred-geometry`) over loopback port `127.0.0.1:8083`.
 
----
+### REST API Endpoints (`127.0.0.1:8083`)
 
-## ☕ 100% Free Open-Access Architecture & Support
-
-UFO Sacred Geometry Studio is **100% free, unlocked, and open-source by default**. Every feature—AutoCAD DXF export, Wavefront OBJ mesh generation, high-resolution vector SVG downloads, and all 29 sacred agro-glyph presets—is accessible with zero paywalls, zero license keys, and zero blurred features.
-
-If you find this software valuable for your creative projects, CAD engineering, or research, consider supporting ongoing development:
-
-- ☕ **Buy Us a Coffee (Stripe)**: [https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
-- ◎ **Solana Wallet Tip**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`
-
----
-
-## 📜 License
-
-Distributed under the **MIT License**. See `LICENSE` for details.
-
----
-
-Engineered by **1nc0gn30 • NullAI** ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)  
-*Sovereign Local-First Architecture • 100% In-Browser Vector CAD Engine • Zero Cloud Egress*
-
----
-
-## 🏛️ ZothOS v3.4, Zoth Studio v2 & Obsidian Second Brain Ecosystem
-
-```mermaid
-flowchart LR
-    subgraph ZothOS["🐧 ZothOS v3.4 CLI & Braille TUI"]
-        CLI["ufo-sacred-geometry --help / --json"]
-        TUI["ufo-sacred-geometry-tui<br/>Unicode U+2800 2x4 Braille"]
-    end
-
-    subgraph Workstation["⚡ Sovereign Workstation"]
-        WEB["http://127.0.0.1:3000<br/>REST API & /health"]
-    end
-
-    subgraph Studio["🌌 Zoth Studio v2 & ZothOS-Lite"]
-        GODMODE["http://127.0.0.1:3000/tools/ufo-sacred-geometry<br/>God-Mode Workstation"]
-        LITE["http://127.0.0.1:8145<br/>ZothOS-Lite Web Desktop"]
-    end
-
-    subgraph SecondBrain["💎 Obsidian Second Brain & STDP"]
-        TRACKER["http://127.0.0.1:8151<br/>Zoth Obsidian Tracker"]
-        NEURO["http://127.0.0.1:8094<br/>Neuro-Memory STDP Cortex"]
-        NOTE["Studio/Tools/Studio ufo-sacred-geometry.md"]
-    end
-
-    CLI --> WEB
-    TUI --> WEB
-    WEB <--> GODMODE
-    WEB <--> LITE
-    WEB --> TRACKER
-    TRACKER <--> NOTE
-    NOTE <--> NEURO
-```
-
-### Cross-Surface Integration Matrix
-
-| Surface | Endpoint / Binary | Capabilities |
+| Method | Path | Description |
 | :--- | :--- | :--- |
-| **Standalone Workstation** | `http://127.0.0.1:3000` | 100% Free & Open-Access Web Deck, live `/health` & REST telemetry |
-| **Zoth Studio v2 Route** | `http://127.0.0.1:3000/tools/ufo-sacred-geometry` | Interactive God-Mode component inside Zoth Studio (`https://zoth.nullai.tech`) |
-| **ZothOS v3.4 CLI & TUI** | `ufo-sacred-geometry` / `ufo-sacred-geometry-tui` | Global binary in `/usr/local/bin/` with Unicode `U+2800` Braille TUI & `--json` output |
-| **ZothOS-Lite Web Desktop** | `http://127.0.0.1:8145` | Browser-native KDE-style window manager & terminal launcher |
-| **Zoth Obsidian Tracker** | `http://127.0.0.1:8151` | Interactive Obsidian Second Brain vault explorer (`~/Documents/Obsidian Vault/Studio/Tools/Studio ufo-sacred-geometry.md`) |
-| **Neuro-Memory STDP Cortex** | `http://127.0.0.1:8094` | 3-Factor STDP synaptic memory daemon & 21-tool MCP server |
+| `GET` | `/health`, `/api/health` | Service health and uptime in seconds |
+| `GET` | `/api/presets`, `/presets` | Full catalog of sacred geometry and agro-glyph presets |
+| `GET` | `/api/stats`, `/stats` | Version, generation count, preset count, and supported exporters |
+| `GET` | `/api/diagnostics`, `/diagnostics` | Platform info, mathematical constants (`phi`, `sqrt(3)`, Golden Angle), and endpoint list |
+| `GET`, `POST` | `/api/generate` | Generate pattern AST, execution latency, stats, and `svg_preview` |
+| `GET`, `POST` | `/api/export-svg` | Download compiled vector `.svg` attachment |
+| `GET`, `POST` | `/api/export-dxf` | Download AutoCAD `.dxf` attachment |
+| `GET`, `POST` | `/api/export-obj` | Download 3D extruded Wavefront `.obj` mesh attachment |
+
+### MCP Server (`stdio`)
+
+Start the JSON-RPC 2.0 MCP server (`protocolVersion: 2024-11-05`):
 
 ```bash
-# Inspect CLI & Unicode U+2800 Braille TUI on ZothOS v3.4
-ufo-sacred-geometry --help
-ufo-sacred-geometry-tui --status
-ufo-sacred-geometry-tui --json
-
-# Verify Second Brain Vault & 12-Step Verification Gallery on :8151
-zoth-obsidian-tracker --verify
+ufogeom mcp
 ```
 
+Registered MCP tools (9), resources (`geometry://presets`, `geometry://catalog`), and prompts (`geometry_create_crop_circle`, `geometry_create_mandala`):
+
+1. `geometry_generate` — Generate pattern AST and themed SVG markup.
+2. `geometry_export_svg` — Export scalable vector SVG with theme and glow controls.
+3. `geometry_export_dxf` — Export AutoCAD R12/2000 DXF geometry for CNC/laser tooling.
+4. `geometry_export_obj` — Export 3D extruded/beveled Wavefront OBJ relief meshes.
+5. `geometry_presets` — Query presets by category (`all`, `sacred`, `crop_circle`, `spiral`, `yantra`, `field`).
+6. `geometry_phyllotaxis` — Generate Golden-Angle Fibonacci phyllotaxis seed spirals.
+7. `geometry_diagnostics` — Run floating-point precision and exporter diagnostics.
+8. `geometry_star_polyhedron` — Project 3D Kepler-Poinsot and Archimedean star polyhedra.
+9. `geometry_sacred_resonance` — Synthesize Chladni cymatic nodal geometry for Solfeggio and Schumann frequencies.
+
+## Testing & Verification
+
+Run the test suite and secret scan locally:
+
+```bash
+python3 -m pytest -q
+node bin/ufo-geometry.js --status --json
+gitleaks detect --source . --no-banner --redact
+```
+
+## Support
+
+UFO Sacred Geometry Studio is 100% free and open-source with zero paywalls. Optional community support: [Buy Us a Coffee via Stripe](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X).
+
+## License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 1nc0gn30 & NullAI ([https://nullai.tech](https://nullai.tech)).
