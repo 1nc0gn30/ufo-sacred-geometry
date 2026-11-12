@@ -19,13 +19,14 @@ UFO Sacred Geometry Studio (`ufo-sacred-geometry`) constructs exact mathematical
 - **Sacred & Platonic Generators (`generators/`)**: Flower of Life, Seed/Egg/Fruit of Life, Vesica Piscis, Metatron's Cube (13-center Platonic projection), Sri Yantra, Merkaba, Tree of Life, Golden Ratio spirals/rectangles/triangles, and Golden Ratio tori.
 - **Historical Agro-Glyphs & Phyllotaxis**: Milk Hill 409-circle Julia set, Barbury Castle tetrahedron, Chilbolton binary glyph, triskele vortices, and Golden-Angle (`137.507764°`) Fibonacci phyllotaxis parastichy discs.
 - **Star Polyhedra & Cymatic Resonance (`star_polyhedra.py`)**: Kepler-Poinsot and Archimedean projections (`cuboctahedron`, `small_stellated_dodecahedron`, `great_stellated_dodecahedron`, `icosidodecahedron`, `truncated_icosahedron`) plus Chladni cymatic nodal plates across Solfeggio (`174–963 Hz`) and Schumann (`7.83 Hz`) frequencies.
-- **CAD & 3D Exporters (`exporters/`)**: Scalable `SVG` (`gold`, `blueprint`, `neon_matrix`, `obsidian_dark`, `light_minimal` themes), AutoCAD `DXF` (CNC/laser/waterjet ready), and 3D extruded/beveled Wavefront `OBJ` relief meshes.
+- **CAD & 3D Exporters (`exporters/`)**: Scalable `SVG` (`gold`, `blueprint`, `neon_matrix`, `obsidian_dark`, `light_minimal` themes), AutoCAD `DXF` (CNC/laser/waterjet ready), CNC G-Code (`.gcode` with rapid G0 and cutting feedrate G1 moves), and 3D extruded/beveled Wavefront `OBJ` relief meshes.
 
 ## Architecture
 
 ```text
 ufo-sacred-geometry/
 ├── assets/hero-banner.svg                  # Studio vector banner
+├── server.py                               # Sovereign server launcher (127.0.0.1:8083)
 ├── bin/ufo-geometry.js                     # Unified CLI, web, and Electron launcher
 ├── public/index.html                       # Interactive HTML5 Canvas CAD workstation
 ├── src/ufo_sacred_geometry/

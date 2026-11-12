@@ -1029,9 +1029,13 @@
           <span class="material-symbols-outlined">download</span>
           <span>SVG Vector</span>
         </button>
-        <button class="btn btn-secondary" onclick="exportFile('dxf')">
+        <button class="btn btn-secondary" onclick="exportFile('gcode')" style="color:#10B981; border-color:rgba(16,185,129,0.45);">
           <span class="material-symbols-outlined">precision_manufacturing</span>
-          <span>DXF (CNC / Laser)</span>
+          <span>CNC G-Code</span>
+        </button>
+        <button class="btn btn-secondary" onclick="exportFile('dxf')">
+          <span class="material-symbols-outlined">architecture</span>
+          <span>DXF (CAD)</span>
         </button>
         <button class="btn btn-secondary" onclick="exportFile('obj')">
           <span class="material-symbols-outlined">view_in_ar</span>
@@ -1743,6 +1747,10 @@
         const dxf = generateDXFString();
         downloadBlob(dxf, filename, 'application/dxf');
       }
+      else if (format === 'gcode') {
+        const gcode = generateGCodeString();
+        downloadBlob(gcode, filename.replace(/\.[^.]+$/, '.gcode'), 'text/x-gcode;charset=utf-8');
+      }
       else if (format === 'obj') {
         const obj = generateOBJString();
         downloadBlob(obj, filename, 'text/plain');
@@ -1776,6 +1784,61 @@
         return;
       }
       showToast(`${format.toUpperCase()} export downloaded`);
+    }
+
+    function generateGCodeString() {
+      let gcode = `( ========================================================= )\n`;
+      gcode += `( UFO Sacred Geometry Studio — CNC Laser / Mill Toolpath   )\n`;
+      gcode += `( Preset: ${state.preset} | Scale: ${state.scale} | Date: ${new Date().toISOString()} )\n`;
+      gcode += `( ========================================================= )\n`;
+      gcode += `G21 (All units in millimeters)\n`;
+      gcode += `G90 (Absolute positioning)\n`;
+      gcode += `G17 (XY plane)\n`;
+      gcode += `G0 Z5.000 F3000 (Safe rapid clearance)\n`;
+      gcode += `M3 S1000 (Laser/Spindle ON)\n\n`;
+
+      state.ast.elements.forEach((el, idx) => {
+        gcode += `( Element ${idx + 1}: ${el.type} )\n`;
+        if (el.type === 'circle') {
+          const segs = 64;
+          const startX = el.cx + el.r;
+          const startY = el.cy;
+          gcode += `G0 X${startX.toFixed(3)} Y${startY.toFixed(3)} (Rapid to start)\n`;
+          gcode += `G1 Z0.000 F1200\n`;
+          for (let i = 1; i <= segs; i++) {
+            const a = (i * 2 * Math.PI) / segs;
+            const x = el.cx + el.r * Math.cos(a);
+            const y = el.cy + el.r * Math.sin(a);
+            gcode += `G1 X${x.toFixed(3)} Y${y.toFixed(3)} F1800\n`;
+          }
+          gcode += `G0 Z5.000\n\n`;
+        } else if (el.type === 'line') {
+          gcode += `G0 X${el.x1.toFixed(3)} Y${el.y1.toFixed(3)} (Rapid to start)\n`;
+          gcode += `G1 Z0.000 F1200\n`;
+          gcode += `G1 X${el.x2.toFixed(3)} Y${el.y2.toFixed(3)} F1800\n`;
+          gcode += `G0 Z5.000\n\n`;
+        } else if (el.type === 'polygon' || el.type === 'polyline') {
+          if (el.points && el.points.length > 0) {
+            const p0 = el.points[0];
+            gcode += `G0 X${p0[0].toFixed(3)} Y${p0[1].toFixed(3)} (Rapid to start)\n`;
+            gcode += `G1 Z0.000 F1200\n`;
+            for (let i = 1; i < el.points.length; i++) {
+              const pt = el.points[i];
+              gcode += `G1 X${pt[0].toFixed(3)} Y${pt[1].toFixed(3)} F1800\n`;
+            }
+            if (el.type === 'polygon') {
+              gcode += `G1 X${p0[0].toFixed(3)} Y${p0[1].toFixed(3)} F1800 (Close loop)\n`;
+            }
+            gcode += `G0 Z5.000\n\n`;
+          }
+        }
+      });
+
+      gcode += `M5 (Laser/Spindle OFF)\n`;
+      gcode += `G0 Z20.000 (Retract clearance)\n`;
+      gcode += `G0 X0 Y0 (Return to origin)\n`;
+      gcode += `M2 (Program End)\n`;
+      return gcode;
     }
 
     function generateDXFString() {
