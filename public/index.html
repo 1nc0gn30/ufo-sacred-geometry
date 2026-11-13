@@ -468,10 +468,9 @@
     /* Preset Filters & Grid */
     .category-chips {
       display: flex;
+      flex-wrap: wrap;
       gap: 6px;
-      overflow-x: auto;
       padding-bottom: 4px;
-      scrollbar-width: none;
     }
     .category-chips::-webkit-scrollbar { display: none; }
 
@@ -915,7 +914,7 @@
         <!-- Live Sliders -->
         <div class="control-group">
           <div class="control-label-row">
-            <span>Radius / Base Size ($R$)</span>
+            <span>Radius / Base Size (R)</span>
             <span class="val" id="val-radius">200 mm</span>
           </div>
           <input type="range" id="param-radius" min="50" max="600" value="200" step="5" oninput="updateParam('radius', this.value)">
@@ -923,7 +922,7 @@
 
         <div class="control-group">
           <div class="control-label-row">
-            <span>Iterations / Layers ($N$)</span>
+            <span>Iterations / Layers (N)</span>
             <span class="val" id="val-iterations">6</span>
           </div>
           <input type="range" id="param-iterations" min="1" max="48" value="6" step="1" oninput="updateParam('iterations', this.value)">
@@ -939,7 +938,7 @@
 
         <div class="control-group">
           <div class="control-label-row">
-            <span>Golden Ratio Multiplier ($\Phi$)</span>
+            <span>Golden Ratio Multiplier (Φ)</span>
             <span class="val" id="val-phi">1.618</span>
           </div>
           <input type="range" id="param-phi" min="0.5" max="3.0" value="1.618" step="0.005" oninput="updateParam('phi', this.value)">
@@ -955,7 +954,7 @@
 
         <div class="control-group">
           <div class="control-label-row">
-            <span>Rotation Angle ($\theta$)</span>
+            <span>Rotation Angle (θ)</span>
             <span class="val" id="val-rotation">0&deg;</span>
           </div>
           <input type="range" id="param-rotation" min="0" max="360" value="0" step="1" oninput="updateParam('rotation', this.value)">
@@ -1075,7 +1074,7 @@
             <span class="stat-value" id="stat-symmetry">D6 (Hexagonal)</span>
           </div>
           <div class="stat-card">
-            <span class="stat-label">Golden Ratio ($\Phi$)</span>
+            <span class="stat-label">Golden Ratio (Φ)</span>
             <span class="stat-value">1.618034</span>
           </div>
           <div class="stat-card">
@@ -1093,7 +1092,7 @@
             <span>Mathematical Properties</span>
           </div>
           <div style="font-size: 12px; line-height: 1.5; color: var(--text-secondary);" id="math-description">
-            The Flower of Life represents the genesis pattern of creation. Contains 19 overlapping circles centered on hexagonal triangular lattice points with $r\sqrt{3}$ inter-nodal spacing.
+            The Flower of Life represents the genesis pattern of creation. Contains 19 overlapping circles centered on hexagonal triangular lattice points with r√3 inter-nodal spacing.
           </div>
         </div>
 
